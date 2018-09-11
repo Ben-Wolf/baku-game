@@ -1,0 +1,6 @@
+/bin
+/lib
+/.temp
+/Baku/export/*
+.DS_Store
+*.iml
