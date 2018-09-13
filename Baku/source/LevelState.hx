@@ -23,7 +23,7 @@ class LevelState extends FlxState
 		add(level.backgroundLayer);
 		
 		// Add static images
-		add(level.imagesLayer);
+		//add(level.imagesLayer);
 		
 		// Load objects layer
 		add(level.objectsLayer);

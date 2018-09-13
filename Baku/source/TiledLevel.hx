@@ -47,7 +47,7 @@ class TiledLevel extends TiledMap
 		
 		FlxG.camera.setScrollBoundsRect(0, 0, fullWidth, fullHeight, true);
 		
-		loadImages();
+		//loadImages();
 		loadObjects(state);
 		
 		// Load Tile Maps
@@ -82,6 +82,7 @@ class TiledLevel extends TiledMap
 			tilemap.loadMapFromArray(tileLayer.tileArray, width, height, processedPath,
 				tileSet.tileWidth, tileSet.tileHeight, OFF, tileSet.firstGID, 1, 1);
 			
+				/*
 			if (tileLayer.properties.contains("animated"))
 			{
 				var tileset = tilesets["level"];
@@ -101,7 +102,7 @@ class TiledLevel extends TiledMap
 						else null
 				]);
 			}
-			
+			*/
 			
 			if (tileLayer.properties.contains("nocollide"))
 			{
@@ -117,7 +118,7 @@ class TiledLevel extends TiledMap
 			}
 		}
 	}
-
+/*
 	function getAnimatedTile(props:TiledTilePropertySet, tileset:TiledTileSet):FlxTileSpecial
 	{
 		var special = new FlxTileSpecial(1, false, false, 0);
@@ -128,7 +129,7 @@ class TiledLevel extends TiledMap
 			(1000 / props.animationFrames[0].duration)
 		);
 		return special;
-	}
+	}*/
 	
 	public function loadObjects(state:LevelState)
 	{
@@ -138,6 +139,7 @@ class TiledLevel extends TiledMap
 				continue;
 			var objectLayer:TiledObjectLayer = cast layer;
 
+			/*
 			//collection of images layer
 			if (layer.name == "images")
 			{
@@ -146,6 +148,7 @@ class TiledLevel extends TiledMap
 					loadImageObject(o);
 				}
 			}
+			*/
 			
 			//objects layer
 			if (layer.name == "objects")
@@ -157,7 +160,7 @@ class TiledLevel extends TiledMap
 			}
 		}
 	}
-	
+	/*
 	function loadImageObject(object:TiledObject)
 	{
 		var tilesImageCollection:TiledTileSet = this.getTileSet("imageCollection");
@@ -197,7 +200,7 @@ class TiledLevel extends TiledMap
 		}
 
 		backgroundLayer.add(decoSprite);
-	}
+	}*/
 	
 	function loadObject(state:LevelState, o:TiledObject, g:TiledObjectLayer, group:FlxGroup)
 	{
@@ -217,9 +220,11 @@ class TiledLevel extends TiledMap
 				player.maxVelocity.y = 160;
 				state.player = player;
 				group.add(player);
+				
+			//SPECIAL OBJECT SPAWNERS GO HERE
 		}
 	}
-
+/*
 	public function loadImages()
 	{
 		for (layer in layers)
@@ -232,7 +237,7 @@ class TiledLevel extends TiledMap
 			imagesLayer.add(sprite);
 		}
 	}
-	
+	*/
 	public function collideWithLevel(obj:FlxObject, ?notifyCallback:FlxObject->FlxObject->Void, ?processCallback:FlxObject->FlxObject->Bool):Bool
 	{
 		if (collidableTileLayers == null)
