@@ -2,6 +2,7 @@
 /lib
 /.temp
 /Baku/export/*
+/Baku/dump/*
 /Baku/*.hxproj
 .DS_Store
 *.iml
