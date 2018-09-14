@@ -82,6 +82,11 @@ class TiledLevel extends TiledMap
 			tilemap.loadMapFromArray(tileLayer.tileArray, width, height, processedPath,
 				tileSet.tileWidth, tileSet.tileHeight, OFF, tileSet.firstGID, 1, 1);
 			
+			//handle custom offset properties
+			if (tileLayer.properties.contains("offsety")){
+				tilemap.y = Std.parseFloat(tileLayer.properties.get("offsety"));
+			}
+			
 				/*
 			if (tileLayer.properties.contains("animated"))
 			{
