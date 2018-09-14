@@ -34,6 +34,17 @@ class LevelState extends FlxState
 
 	override public function update(elapsed:Float):Void 
 	{
+		var deceleration = 3;
+		if (Math.abs(player.velocity.x) > deceleration){
+			player.velocity.x -= (player.velocity.x / Math.abs(player.velocity.x)) * deceleration;
+		}else{
+			player.velocity.x = 0;
+		}
+		if (Math.abs(player.velocity.y) > deceleration){
+			player.velocity.y -= (player.velocity.y / Math.abs(player.velocity.y)) * deceleration;
+		}else{
+			player.velocity.y = 0;
+		}
 		player.acceleration.x = 0;
 		player.acceleration.y = 0;
 		if (FlxG.keys.anyPressed([LEFT, A]))
