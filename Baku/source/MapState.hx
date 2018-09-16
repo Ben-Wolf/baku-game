@@ -8,9 +8,13 @@ import flixel.input.mouse.FlxMouseEventManager;
 class MapState extends FlxState {
 	var _level1button:MapButton;
 	var _level2button:MapButton;
+	var _exitbutton:ExitButton;
 	override public function create():Void {
 		super.create();
 		bgColor = 0xFF546e99;
+		
+		_exitbutton = new ExitButton(0.5);
+		add(_exitbutton);
 		
 		_level1button = new MapButton(100, 100, 0xFFaa1111 , "StartState");
 		_level1button.addRelativeHitbox(9, 9, 32, 32);
