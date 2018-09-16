@@ -13,8 +13,12 @@ class MapState extends FlxState {
 		bgColor = 0xFF546e99;
 		
 		_level1button = new MapButton(100, 100, 0xFFaa1111 , "StartState");
+		_level1button.setRelativeHitbox(9, 9, 32, 32);
+		_level1button.showHitbox();
 		add(_level1button);
 		_level2button = new MapButton(200, 100, 0xFF11aa11 , "PlayState");
+		_level2button.setRelativeHitbox(9, 9, 32, 32);
+		_level2button.showHitbox();
 		add(_level2button);
 	}
 
