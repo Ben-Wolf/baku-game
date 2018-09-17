@@ -125,6 +125,11 @@ class PlayState extends FlxState {
 		trace(_timeText.text);
 	}
 
-	function dummyCallback(Timer:FlxTimer): Void {
+	private function dummyCallback(Timer:FlxTimer): Void {
+	}
+  
+	private function suckSpirit(S: Suck, Sp: Spirit): Void {
+		Sp.kill();
+		// FlxG.switchState(winState());
 	}
 }
