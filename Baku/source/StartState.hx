@@ -23,6 +23,6 @@ class StartState extends FlxState {
 
 	private function start():Void {
 		// TODO: Switch this to new MapState
-		FlxG.switchState(new PlayState());
+		FlxG.switchState(new MapState());
 	}
 }
