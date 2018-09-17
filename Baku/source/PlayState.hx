@@ -10,6 +10,7 @@ import flixel.FlxObject;
 import flixel.FlxG;
 import flixel.input.keyboard.FlxKey;
 import flixel.util.FlxTimer;
+import flixel.util.FlxColor;
 import flixel.text.FlxText;
 
 class PlayState extends FlxState {
@@ -33,6 +34,8 @@ class PlayState extends FlxState {
 		_mWalls.setTileProperties(2, FlxObject.NONE);
 		_mWalls.setTileProperties(3, FlxObject.ANY);
 		_time = new FlxTimer().start(45.0, dummyCallback, 1);
+		_timeText = new FlxText(300, 0, 5000);
+		// _timeText.setBorderStyle(OUTLINE, FlxColor.WHITE, 1);
 		add(_mWalls);
 		// Placing map entities
 		_baku = new Baku();
@@ -41,6 +44,7 @@ class PlayState extends FlxState {
 		for (e in tmpMap.objects) {
 			placeEntities(e.name, e.xmlData.x);
 		}
+		add(_timeText);
 		add(_baku);
 		add(_spirit);
 		FlxG.camera.follow(_baku, TOPDOWN, 1);
@@ -58,8 +62,9 @@ class PlayState extends FlxState {
 		}
 	}
 
-	override public function update(elapsed:Float):Void {
+	override public function update(elapsed:Float): Void {
 		super.update(elapsed);
+		displayTime(_time.timeLeft);
 		if (_time.finished) {
 			// FlxG.switchState(LoseState());
 		}
@@ -103,9 +108,21 @@ class PlayState extends FlxState {
 		add(_suck);
 	}
 
-	function suckSpirit(S: Suck, Sp: Spirit): Void {
+	private function suckSpirit(S: Suck, Sp: Spirit): Void {
 		Sp.kill();
 		// FlxG.switchState(winState());
+	}
+
+	private function displayTime(T: Float): Void {
+		var time: Float = T;
+		var seconds: Int = Math.round(T);
+		var ms: Int = Math.round(time * 100 - seconds * 100);
+		if (ms < 0) {
+			seconds -= 1;
+			ms = ms * -1;
+		}
+		_timeText.text = '00:' + seconds + ':' + ms;
+		trace(_timeText.text);
 	}
 
 	function dummyCallback(Timer:FlxTimer): Void {
