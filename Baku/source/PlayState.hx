@@ -12,6 +12,7 @@ import flixel.input.keyboard.FlxKey;
 
 class PlayState extends FlxState {
 	var _baku: Baku;
+	var _suck: Suck = null;
 	var _spirit: Spirit;
 	var _map: TiledMap;
 	var _mWalls: FlxTilemap;
@@ -56,10 +57,46 @@ class PlayState extends FlxState {
 		super.update(elapsed);
 		if (FlxG.keys.anyPressed([FlxKey.SPACE])) {
 			_baku.sucking = true;
-			FlxG.collide(_spirit, _baku);
+			if (_suck == null) {
+				suck();
+			}
+			FlxG.overlap(_suck, _spirit, suckSpirit);
 		} else {
+			if (_suck != null) {
+				_suck.kill();
+				_suck = null;
+			}
 			_baku.sucking = false;
 		}
 		FlxG.collide(_baku, _mWalls);
+	}
+
+	private function suck(): Void {
+		var addY: Float = 0;
+		var addX: Float = 0;
+		var l: Int = 16;
+		var w: Int = 16;
+
+		if (_baku.facing == FlxObject.UP) {
+			addY = -32;
+			w += 16;
+		} else if (_baku.facing == FlxObject.DOWN) {
+			addY = 16;
+			w += 16;
+		} else if (_baku.facing == FlxObject.LEFT) {
+			addX = -32;
+			l += 16;
+		} else if (_baku.facing == FlxObject.RIGHT) {
+			addX = 16;
+			l += 16;
+		}
+
+		_suck = new Suck(_baku.x + addX, _baku.y + addY, l, w);
+		add(_suck);
+	}
+
+	function suckSpirit(S: Suck, Sp: Spirit): Void {
+		Sp.kill();
+		// FlxG.switchState(winState());
 	}
 }
