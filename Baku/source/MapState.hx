@@ -7,6 +7,7 @@ import flixel.input.mouse.FlxMouseEventManager;
 import Globals.*;
 
 class MapState extends FlxState {
+	var _fountainButton:MapButton;
 	var _level1button:MapButton;
 	var _level2button:MapButton;
 	var _level1Dbutton:MapDreamstateButton;
@@ -19,6 +20,11 @@ class MapState extends FlxState {
 		_exitbutton = new ExitButton(0.5);
 		add(_exitbutton);
 		
+		
+		_fountainButton = new MapButton(200, 200, 0xFFaaaa11, "FountainState");
+		_fountainButton.addRelativeHitbox(9, 9, 32, 32);
+		_fountainButton.showHitbox();
+		add(_fountainButton);
 		
 		//TODO: add UI that shows number of fragments
 		

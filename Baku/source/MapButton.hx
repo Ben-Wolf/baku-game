@@ -54,6 +54,10 @@ class MapButton extends FlxState {
 				Globals.reset();
 			case "PlayState":
 				FlxG.switchState(new PlayState());
+			case "MapState":
+				FlxG.switchState(new MapState());
+			case "FountainState":
+				FlxG.switchState(new FountainState());
 		}
 	}
 	

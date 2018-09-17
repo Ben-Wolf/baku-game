@@ -10,6 +10,7 @@ class StartState extends FlxState {
 
 	override public function create():Void {
 		super.create();
+		bgColor = 0xFF111111;
 		var _welcomeText = new flixel.text.FlxText(0, 0, 0, "Baku", 64);
 		var _startButton = new FlxButton(280, 300, "Start", start);
 		_welcomeText.screenCenter();
