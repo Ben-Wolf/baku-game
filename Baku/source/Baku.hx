@@ -9,7 +9,7 @@ import flixel.input.keyboard.FlxKey;
 
 class Baku extends FlxSprite {
     public var speed: Float = 400;
-    public var prevDIR: Int = 0; // Not sure what im doing
+    public var prevDIR: Int = 0; // Not sure what im doing -- will be used for skidding if we get to that
     public var sucking: Bool = false;
 
     public function new() {
