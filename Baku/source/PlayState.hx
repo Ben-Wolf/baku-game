@@ -9,6 +9,8 @@ import flixel.tile.FlxBaseTilemap;
 import flixel.FlxObject;
 import flixel.FlxG;
 import flixel.input.keyboard.FlxKey;
+import flixel.util.FlxTimer;
+import flixel.text.FlxText;
 
 class PlayState extends FlxState {
 	var _baku: Baku;
@@ -16,6 +18,8 @@ class PlayState extends FlxState {
 	var _spirit: Spirit;
 	var _map: TiledMap;
 	var _mWalls: FlxTilemap;
+	var _time: FlxTimer;
+	var _timeText: FlxText;
 
 	override public function create():Void {
 		super.create();
@@ -28,6 +32,7 @@ class PlayState extends FlxState {
 		_mWalls.follow();
 		_mWalls.setTileProperties(2, FlxObject.NONE);
 		_mWalls.setTileProperties(3, FlxObject.ANY);
+		_time = new FlxTimer().start(45.0, dummyCallback, 1);
 		add(_mWalls);
 		// Placing map entities
 		_baku = new Baku();
@@ -55,6 +60,9 @@ class PlayState extends FlxState {
 
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
+		if (_time.finished) {
+			// FlxG.switchState(LoseState());
+		}
 		if (FlxG.keys.anyPressed([FlxKey.SPACE])) {
 			_baku.sucking = true;
 			if (_suck == null) {
@@ -98,5 +106,8 @@ class PlayState extends FlxState {
 	function suckSpirit(S: Suck, Sp: Spirit): Void {
 		Sp.kill();
 		// FlxG.switchState(winState());
+	}
+
+	function dummyCallback(Timer:FlxTimer): Void {
 	}
 }
