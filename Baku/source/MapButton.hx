@@ -6,6 +6,7 @@ import flixel.group.FlxGroup;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import flixel.input.mouse.FlxMouseEventManager;
+import Globals.*;
 
 class MapButton extends FlxState {
 	var _levelbutton:FlxTypedGroup<FlxSprite>;
@@ -50,6 +51,7 @@ class MapButton extends FlxState {
 		switch(_loadTarget){
 			case "StartState":
 				FlxG.switchState(new StartState());
+				Globals.reset();
 			case "PlayState":
 				FlxG.switchState(new PlayState());
 		}
