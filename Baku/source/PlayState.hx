@@ -108,11 +108,6 @@ class PlayState extends FlxState {
 		add(_suck);
 	}
 
-	private function suckSpirit(S: Suck, Sp: Spirit): Void {
-		Sp.kill();
-		// FlxG.switchState(winState());
-	}
-
 	private function displayTime(T: Float): Void {
 		var time: Float = T;
 		var seconds: Int = Math.round(T);
@@ -127,7 +122,7 @@ class PlayState extends FlxState {
 
 	private function dummyCallback(Timer:FlxTimer): Void {
 	}
-  
+
 	private function suckSpirit(S: Suck, Sp: Spirit): Void {
 		Sp.kill();
 		// FlxG.switchState(winState());
