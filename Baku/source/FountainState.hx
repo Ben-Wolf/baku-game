@@ -14,6 +14,9 @@ class FountainState extends FlxState {
 		super.create();
 		bgColor = 0xFFAA6e99;
 		
+		var _shards = new ShardsUI();
+		add(_shards);
+		
 		_exitbutton = new ExitButton(0.5);
 		add(_exitbutton);
 		

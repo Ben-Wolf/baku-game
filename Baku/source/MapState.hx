@@ -20,6 +20,8 @@ class MapState extends FlxState {
 		_exitbutton = new ExitButton(0.5);
 		add(_exitbutton);
 		
+		var _shards = new ShardsUI();
+		add(_shards);
 		
 		_fountainButton = new MapButton(200, 200, 0xFFaaaa11, "FountainState");
 		_fountainButton.addRelativeHitbox(9, 9, 32, 32);
