@@ -16,19 +16,21 @@ class MapDreamstateButton extends FlxState {
 	
 	var _group:FlxGroup;
 	var _showing:Bool;
-	var _traded:Bool;
+	var _state:Int;
+	var _level:Int;
 	
-	public function new(x:Int, y:Int, traded:Bool){
+	public function new(x:Int, y:Int, level:Int, state:Int){
 		super();
-		_traded = traded;
+		_state = state;
 		
 		//TODO: show different sprite based on returned or not
+		//show error if not enough good dreams
 		_leveloutline = new FlxSprite(x, y);
 		_leveloutline.makeGraphic(50, 50, 0xFFaa1111);
 		add(_leveloutline);
 		_leveloutline.alpha = 0;
 		
-		if(!traded){
+		if(_state == 1){
 			_levelbutton = new FlxSprite(x, y);
 			_levelbutton.makeGraphic(50, 50, 0xFFaa1111);
 			add(_levelbutton);
@@ -69,10 +71,26 @@ class MapDreamstateButton extends FlxState {
 	}
 	
 	public function trade(){
-		//exchange collected good fragment and change sprite to match
+		if (Globals.goodDreams > 0){
+			Globals.goodDreams--;
+			for (b in _group){
+				b.exists = false;
+			}
+			//TODO:change sprite to match
+			//change global variable
+			switch(_level){
+				case 1:
+					Globals.level1State = 2;
+				case 2:
+					Globals.level2State = 2;
+			}
+			_state = 2;
+		}
 	}
 	
 	public function showPrompt(s:FlxSprite){
+		if (_state != 1)
+			return;
 		if (_showing){
 			for (b in _group){
 				b.exists = false;
@@ -94,6 +112,8 @@ class MapDreamstateButton extends FlxState {
 	}
 	
 	public function hover(s:FlxSprite){
+		if (_state != 1)
+			return;
 		_leveloutline.alpha = 1;
 	}
 	
