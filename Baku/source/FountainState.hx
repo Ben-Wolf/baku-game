@@ -20,7 +20,7 @@ class FountainState extends FlxState {
 		_exitbutton = new ExitButton(0.5);
 		add(_exitbutton);
 		
-		_mapButton = new MapButton(100, 100, 0xFFAA1111, "MapState");
+		_mapButton = new MapButton(100, 100, "assets/images/level1outline.png", "MapState");
 		_mapButton.addRelativeHitbox(9, 9, 32, 32);
 		_mapButton.showHitbox();
 		add(_mapButton);

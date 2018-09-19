@@ -8,6 +8,9 @@ import flixel.input.mouse.FlxMouseEventManager;
 class Globals{
 	public static var level1State = 0;
 	public static var level2State = 0;
+	public static var level3State = 0;
+	public static var level4State = 0;
+	public static var level5State = 0;
 	
 	public static var goodDreams = 0;
 	public static var badDreams = 0;

@@ -12,13 +12,13 @@ class MapButton extends FlxState {
 	var _levelbutton:FlxTypedGroup<FlxSprite>;
 	var _leveloutline:FlxSprite;
 	var _loadTarget:String;
-	public function new(x:Int, y:Int, color:FlxColor, loadTarget:String){
+	public function new(x:Int, y:Int, path:String, loadTarget:String){
 		super();
 		_levelbutton = new FlxTypedGroup<FlxSprite>(5);
 		_loadTarget = loadTarget;
 		
 		_leveloutline = new FlxSprite(x, y);
-		_leveloutline.makeGraphic(50, 50, color);
+		_leveloutline.loadGraphic(path);
 		add(_leveloutline);
 		add(_levelbutton);
 		_leveloutline.alpha = 0;
@@ -34,7 +34,7 @@ class MapButton extends FlxState {
 	
 	public function showHitbox():Void{
 		for (b in _levelbutton){
-			b.alpha = 1;
+			b.alpha = .3;
 		}
 	}
 	
