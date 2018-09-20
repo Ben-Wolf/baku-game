@@ -115,20 +115,20 @@ class LevelState extends FlxState {
 	private function suck(): Void {
 		var addY: Float = 0;
 		var addX: Float = 0;
-		var l: Int = 16;
-		var w: Int = 16;
+		var l: Int = 36;
+		var w: Int = 36;
 
 		if (_baku.facing == FlxObject.UP) {
 			addY = -32;
 			w += 16;
 		} else if (_baku.facing == FlxObject.DOWN) {
-			addY = 16;
+			addY = 32;
 			w += 16;
 		} else if (_baku.facing == FlxObject.LEFT) {
 			addX = -32;
 			l += 16;
 		} else if (_baku.facing == FlxObject.RIGHT) {
-			addX = 16;
+			addX = 32;
 			l += 16;
 		}
 
