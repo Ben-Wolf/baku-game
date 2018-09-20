@@ -25,10 +25,6 @@ class LevelState extends FlxState {
 	var _time: FlxTimer;
 	var _timeText: FlxText;
 
-	public function create(Map: String): Void {
-		super.create();
-	}
-
 	override public function update(elapsed:Float): Void {
 		super.update(elapsed);
 		displayTime(_time.timeLeft);
@@ -53,8 +49,9 @@ class LevelState extends FlxState {
 		FlxG.collide(_baku, _mWalls);
 	}
 
-	private function initialize(): Void {
+	private function initialize(Map: String): Void {
 		// Setting up the map
+		_map = new TiledMap("assets/data/" + Map + ".tmx");
 		_mWalls = new FlxTilemap();
 		_mOuter = new FlxTilemap();
 		_mFloor = new FlxTilemap();

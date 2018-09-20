@@ -55,13 +55,13 @@ class MapButton extends FlxState {
 			case "Level1State":
 				FlxG.switchState(new Level1State());
 			case "Level2State":
-				FlxG.switchState(new Level1State());
+				FlxG.switchState(new Level2State());
 			case "Level3State":
-				FlxG.switchState(new Level1State());
+				FlxG.switchState(new Level3State());
 			case "Level4State":
-				FlxG.switchState(new Level1State());
+				FlxG.switchState(new Level4State());
 			case "Level5State":
-				FlxG.switchState(new Level1State());
+				FlxG.switchState(new Level5State());
 			case "MapState":
 				FlxG.switchState(new MapState());
 			case "FountainState":
