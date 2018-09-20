@@ -25,16 +25,20 @@ class MapDreamstateButton extends FlxState {
 		
 		//TODO: show different sprite based on returned or not
 		//show error if not enough good dreams
-		_leveloutline = new FlxSprite(x, y);
-		_leveloutline.makeGraphic(50, 50, 0xFFaa1111);
+		_leveloutline = new FlxSprite(x-1, y-1);
+		_leveloutline.loadGraphic("assets/images/housetypesoutline.png");
 		add(_leveloutline);
 		_leveloutline.alpha = 0;
 		
+		_levelbutton = new FlxSprite(x, y);
+		_levelbutton.loadGraphic("assets/images/housetypes.png", true, 39, 54);
+		_levelbutton.animation.add("0", [0], 6, false);
+		_levelbutton.animation.add("1", [1], 6, false);
+		_levelbutton.animation.add("2", [2], 6, false);
+		add(_levelbutton);
+		_levelbutton.animation.play("" + state);
+		
 		if(_state == 1){
-			_levelbutton = new FlxSprite(x, y);
-			_levelbutton.makeGraphic(50, 50, 0xFFaa1111);
-			add(_levelbutton);
-			_leveloutline.alpha = 0;
 			FlxMouseEventManager.add(_levelbutton, showPrompt, null , hover, out);
 			
 			_showing = false;
@@ -76,13 +80,18 @@ class MapDreamstateButton extends FlxState {
 			for (b in _group){
 				b.exists = false;
 			}
-			//TODO:change sprite to match
-			//change global variable
+			_levelbutton.animation.play("2");
 			switch(_level){
 				case 1:
 					Globals.level1State = 2;
 				case 2:
 					Globals.level2State = 2;
+				case 3:
+					Globals.level3State = 2;
+				case 4:
+					Globals.level4State = 2;
+				case 5:
+					Globals.level5State = 2;
 			}
 			_state = 2;
 		}

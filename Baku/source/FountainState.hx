@@ -17,8 +17,6 @@ class FountainState extends FlxState {
 		var _shards = new ShardsUI();
 		add(_shards);
 		
-		_exitbutton = new ExitButton(0.5);
-		add(_exitbutton);
 		
 		_mapButton = new MapButton(100, 100, "assets/images/level1outline.png", "MapState");
 		_mapButton.addRelativeHitbox(9, 9, 32, 32);
@@ -31,6 +29,9 @@ class FountainState extends FlxState {
 		FlxMouseEventManager.add(_exchangeButton, exchangeFragments, null , hover, out);
 		
 		add(_exchangeButton);
+		
+		_exitbutton = new ExitButton(0.5);
+		add(_exitbutton);
 	}
 
 	override public function update(elapsed:Float):Void {
@@ -46,7 +47,12 @@ class FountainState extends FlxState {
 	}
 	
 	public function exchangeFragments(x:FlxSprite):Bool{
-		//exchange if requirements are met
-		return false;
+		if (Globals.badDreams > 0){
+			Globals.badDreams--;
+			Globals.goodDreams++;
+			return true;
+		}else{
+			return false;
+		}
 	}
 }

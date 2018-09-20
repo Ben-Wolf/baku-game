@@ -28,8 +28,10 @@ class MapState extends FlxState {
 		
 		bgColor = 0xFF546e99;
 		
-		_exitbutton = new ExitButton(0.5);
-		add(_exitbutton);
+		Globals.level1State = 1;
+		Globals.level2State = 2;
+		Globals.goodDreams = 1;
+		Globals.badDreams = 1;
 		
 		var _shards = new ShardsUI();
 		add(_shards);
@@ -65,7 +67,7 @@ class MapState extends FlxState {
 			_level3button.showHitbox();
 			add(_level3button);
 		}
-		_level3Dbutton = new MapDreamstateButton(175, 292, 2, Globals.level3State);
+		_level3Dbutton = new MapDreamstateButton(175, 292, 3, Globals.level3State);
 		add(_level3Dbutton);
 		
 		if (Globals.level4State == 0){
@@ -74,7 +76,7 @@ class MapState extends FlxState {
 			_level4button.showHitbox();
 			add(_level4button);
 		}
-		_level4Dbutton = new MapDreamstateButton(352, 452, 2, Globals.level4State);
+		_level4Dbutton = new MapDreamstateButton(352, 452, 4, Globals.level4State);
 		add(_level4Dbutton);
 		
 		if (Globals.level5State == 0){
@@ -83,8 +85,12 @@ class MapState extends FlxState {
 			_level5button.showHitbox();
 			add(_level5button);
 		}
-		_level5Dbutton = new MapDreamstateButton(561, 424, 2, Globals.level5State);
+		_level5Dbutton = new MapDreamstateButton(561, 424, 5, Globals.level5State);
 		add(_level5Dbutton);
+		
+		
+		_exitbutton = new ExitButton(0.5);
+		add(_exitbutton);
 	}
 
 	override public function update(elapsed:Float):Void {

@@ -17,7 +17,7 @@ class ExitButton extends FlxState {
 	public function new(alpha:Float){
 		super();
 		_button = new FlxSprite(10, 10);
-		_button.makeGraphic(50, 50, 0xFF11AA11);
+		_button.loadGraphic("assets/images/exitbutton.png");
 		_button.alpha = alpha;
 		_alpha = alpha;
 		add(_button);

@@ -16,7 +16,7 @@ class ShardsUI extends FlxState {
 		super();
 		//add images and numbers to represent good and bad shards(inventory)
 		_goodSprite = new FlxSprite(FlxG.width - 60, 10);
-		_goodSprite.makeGraphic(50, 50, 0xFF11AA11);
+		_goodSprite.loadGraphic("assets/images/gooddream.png");
 		add(_goodSprite);
 		
 		_goodText = new FlxText(FlxG.width - 100, 5);
@@ -24,7 +24,7 @@ class ShardsUI extends FlxState {
 		add(_goodText);
 		
 		_badSprite = new FlxSprite(FlxG.width - 180, 10);
-		_badSprite.makeGraphic(50, 50, 0xFFAA1111);
+		_badSprite.loadGraphic("assets/images/baddream.png");
 		add(_badSprite);
 		
 		_badText = new FlxText(FlxG.width - 220, 5);
