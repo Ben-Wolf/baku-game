@@ -152,6 +152,10 @@ class LevelState extends FlxState {
 
 	private function suckSpirit(S: Suck, Sp: Spirit): Void {
 		Sp.kill();
-		// FlxG.switchState(winState());
+		win();
+	}
+	
+	private function win():Void{
+		
 	}
 }
