@@ -90,6 +90,10 @@ class LevelState extends FlxState {
 
 		// Placing map entities
 		_baku = new Baku();
+		_baku.setGraphicSize(18, 18);
+		_baku.updateHitbox();
+		//_baku.offset.set(1, 1);
+		_baku.setGraphicSize(62, 62);
 		_spirit = new Spirit();
 		var tmpMap: TiledObjectLayer = cast _map.getLayer("entities");
 		for (e in tmpMap.objects) {

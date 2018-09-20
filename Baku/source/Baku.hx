@@ -8,24 +8,20 @@ import flixel.FlxG;
 import flixel.input.keyboard.FlxKey;
 
 class Baku extends FlxSprite {
-    public var speed: Float = 400;
+    public var speed: Float = 200;
     public var prevDIR: Int = 0; // Not sure what im doing -- will be used for skidding if we get to that
     public var sucking: Bool = false;
 
     public function new() {
         super();
 		loadGraphic("assets/images/bakuanimationsv1.png", true, 64, 64);
-        drag.x = drag.y = 1600;
+        drag.x = drag.y = 1200;
         setFacingFlip(FlxObject.LEFT, true, false);
         setFacingFlip(FlxObject.RIGHT, false, false);
         animation.add("lr", [25, 26, 27, 28], 24, false);
         animation.add("u", [30, 31, 32, 33], 29, false);
         animation.add("d", [11, 12, 13, 14], 10, false);
-		
-		//setSize(2, 2);
-		//offset.set(16, 16);
-		//updateHitbox();
-		//setSize(32,23);
+
     }
 
     override public function update(elapsed: Float): Void {
