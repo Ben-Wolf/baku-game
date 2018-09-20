@@ -28,11 +28,6 @@ class MapState extends FlxState {
 
 		bgColor = 0xFF546e99;
 
-		Globals.level1State = 1;
-		Globals.level2State = 2;
-		Globals.goodDreams = 1;
-		Globals.badDreams = 1;
-
 		var _shards = new ShardsUI();
 		add(_shards);
 
@@ -61,7 +56,7 @@ class MapState extends FlxState {
 		add(_level2Dbutton);
 
 		if (Globals.level3State == 0){
-			_level3button = new MapButton(175, 292, "assets/images/level3outline.png" , "Level1State");
+			_level3button = new MapButton(175, 292, "assets/images/level3outline.png" , "Level3State");
 			_level3button.addRelativeHitbox(25, 0, 55, 45);
 			_level3button.addRelativeHitbox(0, 45, 88, 100);
 			_level3button.showHitbox();
