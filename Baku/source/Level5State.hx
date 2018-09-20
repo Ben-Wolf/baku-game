@@ -13,8 +13,7 @@ import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
 
-// This state holds all the universal level functionality
-class LevelState extends FlxState {
+class Level5State extends FlxState {
 	var _baku: Baku;
 	var _suck: Suck = null;
 	var _spirit: Spirit;
@@ -25,36 +24,10 @@ class LevelState extends FlxState {
 	var _time: FlxTimer;
 	var _timeText: FlxText;
 
-	public function create(Map: String): Void {
+	override public function create():Void {
 		super.create();
-	}
-
-	override public function update(elapsed:Float): Void {
-		super.update(elapsed);
-		displayTime(_time.timeLeft);
-		if (_time.finished) {
-			// FlxG.switchState(LoseState());
-		}
-		if (FlxG.keys.anyPressed([FlxKey.SPACE])) {
-			_baku.sucking = true;
-			if (_suck == null) {
-				suck();
-			}
-			FlxG.overlap(_suck, _spirit, suckSpirit);
-		} else {
-			if (_suck != null) {
-				_suck.kill();
-				_suck = null;
-			}
-			_baku.sucking = false;
-		}
-		FlxG.collide(_baku, _mOuter);
-		FlxG.collide(_spirit, _mOuter);
-		FlxG.collide(_baku, _mWalls);
-	}
-
-	private function initialize(): Void {
 		// Setting up the map
+		_map = new TiledMap("assets/data/Map5.tmx");
 		_mWalls = new FlxTilemap();
 		_mOuter = new FlxTilemap();
 		_mFloor = new FlxTilemap();
@@ -113,6 +86,30 @@ class LevelState extends FlxState {
 			_spirit.x = x;
 			_spirit.y = y;
 		}
+	}
+
+	override public function update(elapsed:Float): Void {
+		super.update(elapsed);
+		displayTime(_time.timeLeft);
+		if (_time.finished) {
+			// FlxG.switchState(LoseState());
+		}
+		if (FlxG.keys.anyPressed([FlxKey.SPACE])) {
+			_baku.sucking = true;
+			if (_suck == null) {
+				suck();
+			}
+			FlxG.overlap(_suck, _spirit, suckSpirit);
+		} else {
+			if (_suck != null) {
+				_suck.kill();
+				_suck = null;
+			}
+			_baku.sucking = false;
+		}
+		FlxG.collide(_baku, _mWalls);
+		FlxG.collide(_baku, _mOuter);
+		FlxG.collide(_spirit, _mOuter);
 	}
 
 	private function suck(): Void {

@@ -13,7 +13,7 @@ import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
 
-class PlayState extends FlxState {
+class Level4State extends FlxState {
 	var _baku: Baku;
 	var _suck: Suck = null;
 	var _spirit: Spirit;
@@ -27,7 +27,7 @@ class PlayState extends FlxState {
 	override public function create():Void {
 		super.create();
 		// Setting up the map
-		_map = new TiledMap("assets/data/Map5.tmx");
+		_map = new TiledMap("assets/data/Map4.tmx");
 		_mWalls = new FlxTilemap();
 		_mOuter = new FlxTilemap();
 		_mFloor = new FlxTilemap();
