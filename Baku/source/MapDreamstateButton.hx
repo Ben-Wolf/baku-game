@@ -25,8 +25,6 @@ class MapDreamstateButton extends FlxState {
 		
 		_showtimer = 0;
 		
-		//TODO: show different sprite based on returned or not
-		//show error if not enough good dreams
 		_leveloutline = new FlxSprite(x-1, y-1);
 		_leveloutline.loadGraphic("assets/images/housetypesoutline.png");
 		add(_leveloutline);
@@ -104,9 +102,7 @@ class MapDreamstateButton extends FlxState {
 	public function showPrompt(s:FlxSprite){
 		if (_state != 1)
 			return;
-		if (_showtimer <= 0){
-			_showtimer = 20;
-		}
+		_showtimer = 20;
 	}
 	
 	public function hover(s:FlxSprite){
