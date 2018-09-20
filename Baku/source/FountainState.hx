@@ -16,17 +16,19 @@ class FountainState extends FlxState {
 		bgColor = 0xFFAA6e99;
 		
 		_backdrop = new FlxSprite(0, 0);
-		_backdrop.loadGraphic("assets/images/baku_statue.png", true, 680, 453);
+		_backdrop.loadGraphic("assets/images/baku_statue.png", true, 800, 620);
 		_backdrop.animation.add("animate", [0, 1, 2], 6, false);
 		add(_backdrop);
 		
 		var _shards = new ShardsUI();
 		add(_shards);
 		
+		var _backtomapbutton = new FlxSprite(10, 564);
+		_backtomapbutton.loadGraphic("assets/images/backtomapbutton.png");
+		add(_backtomapbutton);
 		
-		_mapButton = new MapButton(100, 100, "assets/images/backtomapoutline.png", "MapState");
+		_mapButton = new MapButton(9, 563, "assets/images/backtomapoutline.png", "MapState");
 		_mapButton.addRelativeHitbox(1, 1, 100, 44);
-		_mapButton.showHitbox();
 		add(_mapButton);
 		
 		_exchangeButton = new FlxSprite(100, 200);
