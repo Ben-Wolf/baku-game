@@ -15,13 +15,15 @@ class MapDreamstateButton extends FlxState {
 	var _leveloutline:FlxSprite;
 	
 	var _group:FlxGroup;
-	var _showing:Bool;
+	var _showtimer:Int;
 	var _state:Int;
 	var _level:Int;
 	
 	public function new(x:Int, y:Int, level:Int, state:Int){
 		super();
 		_state = state;
+		
+		_showtimer = 0;
 		
 		//TODO: show different sprite based on returned or not
 		//show error if not enough good dreams
@@ -37,28 +39,19 @@ class MapDreamstateButton extends FlxState {
 		_levelbutton.animation.add("2", [2], 6, false);
 		add(_levelbutton);
 		_levelbutton.animation.play("" + state);
+	
+		_group = new FlxGroup(3);
+		var _background = new FlxSprite(x + 10, y + 70);
+		_background.makeGraphic(200, 60, 0xFFAA1111);
+		_group.add(_background);
 		
+		for (b in _group){
+			b.exists = false;
+		}
+		
+		add(_group);
 		if(_state == 1){
-			FlxMouseEventManager.add(_levelbutton, showPrompt, null , hover, out);
-			
-			_showing = false;
-			
-			_group = new FlxGroup(3);
-			var _background = new FlxSprite(x + 10, y + 70);
-			_background.makeGraphic(200, 60, 0xFFAA1111);
-			_group.add(_background);
-			
-			var _yesButton = new FlxButton(x + 20, y + 100, "Yes", trade);
-			_group.add(_yesButton);
-			
-			var _noButton = new FlxButton(x + 120, y + 100, "No", hidePrompt);
-			_group.add(_noButton);
-			
-			for (b in _group){
-				b.exists = false;
-			}
-			
-			add(_group);
+			FlxMouseEventManager.add(_levelbutton, trade, null , hover, out);
 		}
 	}
 	
@@ -72,9 +65,18 @@ class MapDreamstateButton extends FlxState {
 
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
+			for (b in _group){
+				b.exists = false;
+			}
+		if (_showtimer > 0){
+			for (b in _group){
+				b.exists = true;
+			}
+		}
+			_showtimer--;
 	}
 	
-	public function trade(){
+	public function trade(s:FlxSprite){
 		if (Globals.goodDreams > 0){
 			Globals.goodDreams--;
 			for (b in _group){
@@ -94,30 +96,17 @@ class MapDreamstateButton extends FlxState {
 					Globals.level5State = 2;
 			}
 			_state = 2;
+		}else{
+			showPrompt(_levelbutton);
 		}
 	}
 	
 	public function showPrompt(s:FlxSprite){
 		if (_state != 1)
 			return;
-		if (_showing){
-			for (b in _group){
-				b.exists = false;
-			}
-			_showing = false;
-		}else{
-			for (b in _group){
-				b.exists = true;
-			}
-			_showing = true;
+		if (_showtimer <= 0){
+			_showtimer = 20;
 		}
-	}
-	
-	public function hidePrompt():Void{
-		for (b in _group){
-			b.exists = false;
-		}
-		_showing = false;
 	}
 	
 	public function hover(s:FlxSprite){

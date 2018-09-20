@@ -19,33 +19,59 @@ class PlayState extends FlxState {
 	var _spirit: Spirit;
 	var _map: TiledMap;
 	var _mWalls: FlxTilemap;
+	var _mOuter: FlxTilemap;
+	var _mFloor: FlxTilemap;
 	var _time: FlxTimer;
 	var _timeText: FlxText;
 
 	override public function create():Void {
 		super.create();
 		// Setting up the map
-		_map = new TiledMap("assets/data/testmap.tmx");
+		_map = new TiledMap("assets/data/Map5.tmx");
 		_mWalls = new FlxTilemap();
-		_mWalls.loadMapFromArray(cast(_map.getLayer("Walls"), TiledTileLayer).tileArray,
-								_map.width, _map.height, "assets/images/tiles-temp.png",
+		_mOuter = new FlxTilemap();
+		_mFloor = new FlxTilemap();
+
+		// Create floor
+		_mFloor.loadMapFromArray(cast(_map.getLayer("floor"), TiledTileLayer).tileArray,
+								_map.width, _map.height, "assets/images/walls.png",
 								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
-		_mWalls.follow();
+		// _mFloor.follow();
+		_mFloor.setTileProperties(2, FlxObject.NONE);
+		_mFloor.setTileProperties(3, FlxObject.ANY);
+		add(_mFloor);
+
+		// Create walls
+		_mWalls.loadMapFromArray(cast(_map.getLayer("walls"), TiledTileLayer).tileArray,
+								_map.width, _map.height, "assets/images/walls.png",
+								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
+		// _mWalls.follow();
 		_mWalls.setTileProperties(2, FlxObject.NONE);
 		_mWalls.setTileProperties(3, FlxObject.ANY);
+		add(_mWalls);
+
+		// Create outer barriers
+		_mOuter.loadMapFromArray(cast(_map.getLayer("outer"), TiledTileLayer).tileArray,
+								_map.width, _map.height, "assets/images/walls.png",
+								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
+		_mOuter.follow();
+		_mOuter.setTileProperties(2, FlxObject.NONE);
+		_mOuter.setTileProperties(3, FlxObject.ANY);
+		add(_mOuter);
+
+		// Initialize timer
 		_time = new FlxTimer().start(45.0, dummyCallback, 1);
 		_timeText = new FlxText(300, 0, 5000);
-		// _timeText.setBorderStyle(OUTLINE, FlxColor.WHITE, 1);
-		add(_mWalls);
+		add(_timeText);
+
 		// Placing map entities
 		_baku = new Baku();
 		_baku.setGraphicSize(32, 32);
 		_spirit = new Spirit();
-		var tmpMap: TiledObjectLayer = cast _map.getLayer("Entities");
+		var tmpMap: TiledObjectLayer = cast _map.getLayer("entities");
 		for (e in tmpMap.objects) {
 			placeEntities(e.name, e.xmlData.x);
 		}
-		add(_timeText);
 		add(_baku);
 		add(_spirit);
 		FlxG.camera.follow(_baku, TOPDOWN, 1);
@@ -83,6 +109,8 @@ class PlayState extends FlxState {
 			_baku.sucking = false;
 		}
 		FlxG.collide(_baku, _mWalls);
+		FlxG.collide(_baku, _mOuter);
+		FlxG.collide(_spirit, _mOuter);
 	}
 
 	private function suck(): Void {
@@ -110,15 +138,14 @@ class PlayState extends FlxState {
 	}
 
 	private function displayTime(T: Float): Void {
-		var time: Float = T;
+		var ttime: Float = T;
 		var seconds: Int = Math.round(T);
-		var ms: Int = Math.round(time * 100 - seconds * 100);
+		var ms: Int = Math.round(ttime * 100 - seconds * 100);
 		if (ms < 0) {
 			seconds -= 1;
 			ms = ms * -1;
 		}
 		_timeText.text = '00:' + seconds + ':' + ms;
-		trace(_timeText.text);
 	}
 
 	private function dummyCallback(Timer:FlxTimer): Void {

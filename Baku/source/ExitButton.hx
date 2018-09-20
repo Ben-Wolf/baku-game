@@ -26,7 +26,7 @@ class ExitButton extends FlxState {
 		
 		_group = new FlxGroup(3);
 		var _background = new FlxSprite(10, 70);
-		_background.makeGraphic(200, 60, 0xFFAA1111);
+		_background.loadGraphic("assets/images/exitprompt.png");
 		_group.add(_background);
 		
 		var _yesButton = new FlxButton(20, 100, "Yes", loadMenu);
