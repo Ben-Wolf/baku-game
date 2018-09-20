@@ -16,14 +16,14 @@ class MapButton extends FlxState {
 		super();
 		_levelbutton = new FlxTypedGroup<FlxSprite>(5);
 		_loadTarget = loadTarget;
-		
+
 		_leveloutline = new FlxSprite(x, y);
 		_leveloutline.loadGraphic(path);
 		add(_leveloutline);
 		add(_levelbutton);
 		_leveloutline.alpha = 0;
 	}
-	
+
 	public function addRelativeHitbox(x:Int, y:Int, width:Int, height:Int):Void{
 		var levelbutton = new FlxSprite(_leveloutline.x + x, _leveloutline.y + y);
 		levelbutton.makeGraphic(width, height, 0xFFaa1111);
@@ -31,13 +31,13 @@ class MapButton extends FlxState {
 		_levelbutton.add(levelbutton);
 		FlxMouseEventManager.add(levelbutton, clicked, null , hover, out);
 	}
-	
+
 	public function showHitbox():Void{
 		for (b in _levelbutton){
 			b.alpha = .3;
 		}
 	}
-	
+
 	override public function create():Void {
 		super.create();
 	}
@@ -45,26 +45,34 @@ class MapButton extends FlxState {
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
 	}
-	
+
 	public function clicked(s:FlxSprite){
 		trace("loading " + _loadTarget);
 		switch(_loadTarget){
 			case "StartState":
 				FlxG.switchState(new StartState());
 				Globals.reset();
-			case "PlayState":
-				FlxG.switchState(new PlayState());
+			case "Level1State":
+				FlxG.switchState(new Level1State());
+			case "Level2State":
+				FlxG.switchState(new Level2State());
+			case "Level3State":
+				FlxG.switchState(new Level3State());
+			case "Level4State":
+				FlxG.switchState(new Level4State());
+			case "Level5State":
+				FlxG.switchState(new Level5State());
 			case "MapState":
 				FlxG.switchState(new MapState());
 			case "FountainState":
 				FlxG.switchState(new FountainState());
 		}
 	}
-	
+
 	public function hover(s:FlxSprite){
 		_leveloutline.alpha = 1;
 	}
-	
+
 	public function out(s:FlxSprite){
 		_leveloutline.alpha = 0;
 	}
