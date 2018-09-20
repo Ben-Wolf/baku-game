@@ -39,6 +39,7 @@ class PlayState extends FlxState {
 		add(_mWalls);
 		// Placing map entities
 		_baku = new Baku();
+		_baku.setGraphicSize(32, 32);
 		_spirit = new Spirit();
 		var tmpMap: TiledObjectLayer = cast _map.getLayer("Entities");
 		for (e in tmpMap.objects) {

@@ -14,16 +14,18 @@ class Baku extends FlxSprite {
 
     public function new() {
         super();
-        loadGraphic("assets/images/temp.png", true, 16, 16);
-        drag.x = drag.y = 2000;
-        setSize(8, 14);
-        offset.set(4, 2);
-
-        setFacingFlip(FlxObject.LEFT, false, false);
-        setFacingFlip(FlxObject.RIGHT, true, false);
-        animation.add("lr", [3, 4, 3, 5], 6, false);
-        animation.add("u", [6, 7, 6, 8], 6, false);
-        animation.add("d", [0, 1, 0, 2], 6, false);
+		loadGraphic("assets/images/bakuanimationsv1.png", true, 64, 64);
+        drag.x = drag.y = 1600;
+        setFacingFlip(FlxObject.LEFT, true, false);
+        setFacingFlip(FlxObject.RIGHT, false, false);
+        animation.add("lr", [25, 26, 27, 28], 24, false);
+        animation.add("u", [30, 31, 32, 33], 29, false);
+        animation.add("d", [11, 12, 13, 14], 10, false);
+		
+		//setSize(2, 2);
+		//offset.set(16, 16);
+		//updateHitbox();
+		//setSize(32,23);
     }
 
     override public function update(elapsed: Float): Void {
