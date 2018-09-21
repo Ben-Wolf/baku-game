@@ -3,6 +3,7 @@ package;
 import flixel.FlxState;
 import flixel.FlxG;
 import flixel.ui.FlxButton;
+import flixel.system.FlxSound;
 
 class StartState extends FlxState {
 
@@ -16,6 +17,7 @@ class StartState extends FlxState {
 		_welcomeText.screenCenter();
 		add(_welcomeText);
 		add(_startButton);
+		FlxG.sound.playMusic(AssetPaths.BakuTheme__ogg);
 	}
 
 	override public function update(elapsed:Float):Void {

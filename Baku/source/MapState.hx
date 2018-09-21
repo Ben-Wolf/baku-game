@@ -5,6 +5,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.input.mouse.FlxMouseEventManager;
 import Globals.*;
+import flixel.system.FlxSound;
 
 class MapState extends FlxState {
 	var _fountainButton:MapButton;
@@ -21,6 +22,8 @@ class MapState extends FlxState {
 	var _exitbutton:ExitButton;
 	override public function create():Void {
 		super.create();
+
+		FlxG.sound.playMusic(AssetPaths.BakuTheme__ogg);
 
 		var _backdrop = new FlxSprite(0, 0);
 		_backdrop.loadGraphic("assets/images/map.png");
