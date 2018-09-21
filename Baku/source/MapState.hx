@@ -20,6 +20,7 @@ class MapState extends FlxState {
 	var _level4Dbutton:MapDreamstateButton;
 	var _level5Dbutton:MapDreamstateButton;
 	var _exitbutton:ExitButton;
+	var _finishbutton:FinishButton;
 	override public function create():Void {
 		super.create();
 
@@ -89,6 +90,9 @@ class MapState extends FlxState {
 
 		_exitbutton = new ExitButton(0.5);
 		add(_exitbutton);
+		
+		_finishbutton = new FinishButton(0.5);
+		add(_finishbutton);
 	}
 
 	override public function update(elapsed:Float):Void {
