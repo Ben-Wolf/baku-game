@@ -39,7 +39,7 @@ class FountainState extends FlxState {
 		_exchangeButtonHitbox = new FlxSprite(97, 260);
 		_exchangeButtonHitbox.makeGraphic(547, 288, 0x01AA1111);
 		add(_exchangeButtonHitbox);
-		if(Globals.goodDreams > 0)
+		if(Globals.badDreams > 0)
 			FlxMouseEventManager.add(_exchangeButtonHitbox, exchangeFragments, null , hover, out);
 		
 		add(_exchangeButton);

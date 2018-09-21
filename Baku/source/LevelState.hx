@@ -18,8 +18,12 @@ import flixel.system.FlxSound;
 class LevelState extends FlxState {
 	var _baku: Baku;
 	var _suck: Suck = null;
-	var _soundSuck: FlxSound;
-	var _spirit: Spirit;
+	var _spirit1: Spirit;
+	var _spirit2: Spirit;
+	var _spirit3: Spirit;
+	var _soundSuckUp: FlxSound;
+	var _soundSuckLoop: FlxSound;
+	var _soundSuckDown: FlxSound;
 	var _map: TiledMap;
 	var _mWalls: FlxTilemap;
 	var _mSafety: FlxTilemap;
@@ -40,20 +44,28 @@ class LevelState extends FlxState {
 
 			if (_suck == null) {
 				suck();
+				_soundSuckUp.play();
+			} else {
+			_soundSuckLoop.play();
 			}
-			FlxG.overlap(_suck, _spirit, suckSpirit);
-			_soundSuck.play();
+			FlxG.overlap(_suck, _spirit1, suckSpirit);
+			FlxG.overlap(_suck, _spirit2, suckSpirit);
+			FlxG.overlap(_suck, _spirit3, suckSpirit);
 		} else {
 			if (_suck != null) {
 				_suck.kill();
 				_suck = null;
+				_soundSuckDown.play();
 			}
 			_baku.sucking = false;
 		}
-		FlxG.collide(_baku, _mSafety);
+
+		FlxG.collide(_spirit1, _mOuter);
+		FlxG.collide(_spirit2, _mOuter);
+		FlxG.collide(_spirit3, _mOuter);
+		// FlxG.collide(_baku, _mSafety);
 		FlxG.collide(_baku, _mOuter);
-		FlxG.collide(_spirit, _mOuter);
-		FlxG.collide(_baku, _mWalls);
+		// FlxG.collide(_baku, _mWalls);
 	}
 
 	private function initialize(Map: String): Void {
@@ -64,40 +76,37 @@ class LevelState extends FlxState {
 		_mOuter = new FlxTilemap();
 		_mFloor = new FlxTilemap();
 
-		// Create floor
-		_mFloor.loadMapFromArray(cast(_map.getLayer("floor"), TiledTileLayer).tileArray,
-								_map.width, _map.height, "assets/images/walls.png",
-								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
-		// _mFloor.follow();
-		_mFloor.setTileProperties(2, FlxObject.NONE);
-		_mFloor.setTileProperties(3, FlxObject.ANY);
-		add(_mFloor);
-
 		// Implement safety barrier layer
 		_mSafety.loadMapFromArray(cast(_map.getLayer("safety"), TiledTileLayer).tileArray,
 								_map.width, _map.height, "assets/images/walls.png",
 								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
 		_mSafety.setTileProperties(2, FlxObject.NONE);
-		_mSafety.setTileProperties(3, FlxObject.ANY);
-		add(_mWalls);
-
-		// Create walls
-		_mWalls.loadMapFromArray(cast(_map.getLayer("walls"), TiledTileLayer).tileArray,
-								_map.width, _map.height, "assets/images/walls.png",
-								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
-		// _mWalls.follow();
-		_mWalls.setTileProperties(2, FlxObject.NONE);
-		_mWalls.setTileProperties(3, FlxObject.ANY);
-		add(_mWalls);
+		_mSafety.setTileProperties(26, FlxObject.ANY);
+		add(_mSafety);
 
 		// Create outer barriers
 		_mOuter.loadMapFromArray(cast(_map.getLayer("outer"), TiledTileLayer).tileArray,
 								_map.width, _map.height, "assets/images/walls.png",
 								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
 		_mOuter.follow();
-		_mOuter.setTileProperties(2, FlxObject.NONE);
-		_mOuter.setTileProperties(3, FlxObject.ANY);
+		_mOuter.setTileProperties(23, FlxObject.ANY);
+		_mOuter.setTileProperties(24, FlxObject.ANY);
+		_mOuter.setTileProperties(1, FlxObject.ANY);
 		add(_mOuter);
+
+		// Create floor
+		_mFloor.loadMapFromArray(cast(_map.getLayer("floor"), TiledTileLayer).tileArray,
+								_map.width, _map.height, "assets/images/walls.png",
+								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
+		// _mFloor.follow();
+		add(_mFloor);
+
+		// Create walls
+		_mWalls.loadMapFromArray(cast(_map.getLayer("walls"), TiledTileLayer).tileArray,
+								_map.width, _map.height, "assets/images/walls.png",
+								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
+		// _mWalls.follow();
+		add(_mWalls);
 
 		// Initialize timer
 		_time = new FlxTimer().start(45.0, dummyCallback, 1);
@@ -106,19 +115,21 @@ class LevelState extends FlxState {
 
 		// Placing map entities
 		_baku = new Baku();
-		//_baku.setGraphicSize(18, 18);
-		//_baku.updateHitbox();
-		//_baku.offset.set(1, 1);
-		//_baku.setGraphicSize(62, 62);
-		_spirit = new Spirit();
+		_spirit1 = new Spirit();
+		_spirit2 = new Spirit();
+		_spirit3 = new Spirit();
 		var tmpMap: TiledObjectLayer = cast _map.getLayer("entities");
 		for (e in tmpMap.objects) {
 			placeEntities(e.name, e.xmlData.x);
 		}
 		add(_baku);
-		add(_spirit);
+		add(_spirit1);
+		add(_spirit2);
+		add(_spirit3);
 		FlxG.camera.follow(_baku, TOPDOWN, 1);
-		_soundSuck = FlxG.sound.load(AssetPaths.suck_0__wav);
+		_soundSuckUp = FlxG.sound.load(AssetPaths.suck_0__wav);
+		_soundSuckLoop = FlxG.sound.load(AssetPaths.suck_1__wav);
+		_soundSuckDown = FlxG.sound.load(AssetPaths.suck_2__wav);
 	}
 
 	private function placeEntities(name: String, data: Xml): Void {
@@ -127,9 +138,17 @@ class LevelState extends FlxState {
 		if (name == "baku") {
 			_baku.x = x;
 			_baku.y = y;
-		} else if (name == "spirit") {
-			_spirit.x = x;
-			_spirit.y = y;
+		} else if (name == "spirit1") {
+			_spirit1.x = x;
+			_spirit1.y = y;
+			_spirit1.speed = 200;
+		} else if (name == "spirit2") {
+			_spirit2.x = x;
+			_spirit2.y = y;
+		} else if (name == "spirit3") {
+			_spirit3.x = x;
+			_spirit3.y = y;
+			_spirit3.speed = 650;
 		}
 	}
 
@@ -173,7 +192,10 @@ class LevelState extends FlxState {
 
 	private function suckSpirit(S: Suck, Sp: Spirit): Void {
 		Sp.kill();
-		win();
+		Sp == null;
+		if (_spirit1 == null && _spirit2 == null && _spirit3 == null) {
+			win();
+		}
 	}
 
 	private function win():Void{
