@@ -64,6 +64,8 @@ class MapButton extends FlxState {
 				FlxG.switchState(new MapState());
 			case "FountainState":
 				FlxG.switchState(new FountainState());
+			case "IntroState":
+				FlxG.switchState(new IntroState());
 		}
 	}
 
