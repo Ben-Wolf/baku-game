@@ -39,8 +39,8 @@ class MapDreamstateButton extends FlxState {
 		_levelbutton.animation.play("" + state);
 	
 		_group = new FlxGroup(3);
-		var _background = new FlxSprite(x + 10, y + 70);
-		_background.makeGraphic(200, 60, 0xFFAA1111);
+		var _background = new FlxSprite(x - 20, y + 70);
+		_background.loadGraphic("assets/images/orbtext.png");
 		_group.add(_background);
 		
 		for (b in _group){

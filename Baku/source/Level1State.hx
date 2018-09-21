@@ -14,6 +14,12 @@ class Level1State extends LevelState {
 
 	override public function win(): Void{
 		Globals.level1State = 1;
-		FlxG.switchState(new WinState());
+		Globals.badDreams += 1;
+		FlxG.switchState(new EndState(true));
+	}
+	
+	override public function lose(): Void{
+		Globals.level1State = 1;
+		FlxG.switchState(new EndState(false));
 	}
 }

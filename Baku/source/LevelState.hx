@@ -12,6 +12,7 @@ import flixel.input.keyboard.FlxKey;
 import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
+import flixel.system.FlxSound;
 
 // This state holds all the universal level functionality
 class LevelState extends FlxState {
@@ -20,6 +21,9 @@ class LevelState extends FlxState {
 	var _spirit1: Spirit;
 	var _spirit2: Spirit;
 	var _spirit3: Spirit;
+	var _soundSuckUp: FlxSound;
+	var _soundSuckLoop: FlxSound;
+	var _soundSuckDown: FlxSound;
 	var _map: TiledMap;
 	var _mWalls: FlxTilemap;
 	var _mSafety: FlxTilemap;
@@ -38,6 +42,9 @@ class LevelState extends FlxState {
 			_baku.sucking = true;
 			if (_suck == null) {
 				suck();
+				_soundSuckUp.play();
+			} else {
+			_soundSuckLoop.play();
 			}
 			FlxG.overlap(_suck, _spirit1, suckSpirit);
 			FlxG.overlap(_suck, _spirit2, suckSpirit);
@@ -46,6 +53,7 @@ class LevelState extends FlxState {
 			if (_suck != null) {
 				_suck.kill();
 				_suck = null;
+				_soundSuckDown.play();
 			}
 			_baku.sucking = false;
 		}
@@ -117,6 +125,9 @@ class LevelState extends FlxState {
 		add(_spirit2);
 		add(_spirit3);
 		FlxG.camera.follow(_baku, TOPDOWN, 1);
+		_soundSuckUp = FlxG.sound.load(AssetPaths.suck_0__wav);
+		_soundSuckLoop = FlxG.sound.load(AssetPaths.suck_1__wav);
+		_soundSuckDown = FlxG.sound.load(AssetPaths.suck_2__wav);
 	}
 
 	private function placeEntities(name: String, data: Xml): Void {
@@ -186,6 +197,9 @@ class LevelState extends FlxState {
 	}
 
 	private function win():Void{
+
+	}
+	private function lose():Void{
 
 	}
 }

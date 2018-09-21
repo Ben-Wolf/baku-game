@@ -9,6 +9,7 @@ import Globals.*;
 class FountainState extends FlxState {
 	var _mapButton:MapButton;
 	var _exchangeButton:FlxSprite;
+	var _exchangeButtonHitbox:FlxSprite;
 	var _exitbutton:ExitButton;
 	var _backdrop:FlxSprite;
 	override public function create():Void {
@@ -31,10 +32,15 @@ class FountainState extends FlxState {
 		_mapButton.addRelativeHitbox(1, 1, 100, 44);
 		add(_mapButton);
 		
-		_exchangeButton = new FlxSprite(100, 200);
-		_exchangeButton.makeGraphic(50, 50, 0xFFAAAAAA);
-		_exchangeButton.alpha = .5;
-		FlxMouseEventManager.add(_exchangeButton, exchangeFragments, null , hover, out);
+		_exchangeButton = new FlxSprite(97, 260);
+		_exchangeButton.loadGraphic("assets/images/bakufountainoutline.png");
+		_exchangeButton.alpha = 0;
+		
+		_exchangeButtonHitbox = new FlxSprite(97, 260);
+		_exchangeButtonHitbox.makeGraphic(547, 288, 0x01AA1111);
+		add(_exchangeButtonHitbox);
+		if(Globals.badDreams > 0)
+			FlxMouseEventManager.add(_exchangeButtonHitbox, exchangeFragments, null , hover, out);
 		
 		add(_exchangeButton);
 		
@@ -52,7 +58,7 @@ class FountainState extends FlxState {
 	}
 	
 	public function out(s:FlxSprite){
-		_exchangeButton.alpha = .5;
+		_exchangeButton.alpha = 0;
 	}
 	
 	public function exchangeFragments(x:FlxSprite):Bool{
