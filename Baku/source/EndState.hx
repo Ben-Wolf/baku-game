@@ -19,9 +19,9 @@ class EndState extends FlxState {
 		
 		_backdrop = new FlxSprite(0, 0);
 		if (won){
-			_backdrop.loadGraphic("assets/images/baku_statue.png", true, 680, 453);
+			_backdrop.loadGraphic("assets/images/winscreen.png", true, 800, 620);
 		}else{
-			_backdrop.loadGraphic("assets/images/baku_statue.png", true, 800, 620);
+			_backdrop.loadGraphic("assets/images/losescreen.png", true, 800, 620);
 		}
 		_backdrop.animation.add("animate", [0, 1, 2], 6, false);
 		add(_backdrop);
@@ -35,12 +35,13 @@ class EndState extends FlxState {
 	
 	override public function create():Void {
 		super.create();
-		_continueButton = new MapButton(100, 100, "assets/images/backtomapoutline.png", "MapState");
+		_continueButton = new MapButton(350, 490, "assets/images/backtomapoutline.png", "MapState");
 		_continueButton.addRelativeHitbox(1, 1, 100, 44);
 		
-		var tempsprite = new FlxSprite(101, 101);
-		tempsprite.makeGraphic(100, 44, 0xFFAA1111);
-		add(tempsprite);
+		var _spr = new FlxSprite(351, 491);
+		_spr.loadGraphic("assets/images/continuebutton.png");
+		add(_spr);
+		
 		_continueButton.showHitbox();
 		add(_continueButton);
 	}

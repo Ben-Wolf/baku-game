@@ -24,6 +24,9 @@ class Baku extends FlxSprite {
 		animation.add("lrs", [15, 16, 17, 18, 19, 20, 21, 22, 23], 24, false);
 		animation.add("us", [1, 2, 3, 4, 5, 6, 7, 8], 29, false);
 		animation.add("ds", [35, 36, 37, 38, 39, 40, 41, 42, 43], 10, false); 
+		animation.add("lrscont", [18, 19, 20, 21, 22, 23], 18, false);
+		animation.add("uscont", [3, 4, 5, 6, 7, 8], 3, false);
+		animation.add("dscont", [39, 40, 41, 42, 43], 39, false); 
 		
     }
 
@@ -36,18 +39,33 @@ class Baku extends FlxSprite {
         super.update(elapsed);
     }
 	
-	public function suckboi(): Void{
-		
-		switch (facing) 
+	public function suckboi(loop: Bool): Void{
+		if (loop) 
 		{
-			case FlxObject.LEFT, FlxObject.RIGHT:
-				animation.play("lrs");
-			case  FlxObject.UP:
-				animation.play("ds");
-			case FlxObject.DOWN:
-				animation.play("us");
+			switch (facing) 
+			{
+				case FlxObject.LEFT, FlxObject.RIGHT:
+					animation.play("lrs");
+				case  FlxObject.UP:
+					animation.play("ds");
+				case FlxObject.DOWN:
+					animation.play("us");
 				
+			}
+		}else 
+		{
+			switch (facing) 
+			{
+				case FlxObject.LEFT, FlxObject.RIGHT:
+					animation.play("lrscont");
+				case  FlxObject.UP:
+					animation.play("dscont");
+				case FlxObject.DOWN:
+					animation.play("uscont");	
+			}
 		}
+		
+		
 	}
 
     function move(): Void {
