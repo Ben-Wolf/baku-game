@@ -88,10 +88,10 @@ class MapState extends FlxState {
 		add(_level5Dbutton);
 
 
-		_exitbutton = new ExitButton(0.5);
+		_exitbutton = new ExitButton(0.7);
 		add(_exitbutton);
 		
-		_finishbutton = new FinishButton(0.5);
+		_finishbutton = new FinishButton(0.7);
 		add(_finishbutton);
 	}
 
