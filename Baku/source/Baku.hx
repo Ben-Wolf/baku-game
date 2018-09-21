@@ -60,6 +60,36 @@ class Baku extends FlxSprite {
         _down = FlxG.keys.anyPressed([DOWN, S]);
         _left = FlxG.keys.anyPressed([LEFT, A]);
         _right = FlxG.keys.anyPressed([RIGHT, D]);
+		
+		if (FlxG.keys.pressed.UP){
+			
+		}
+
+    if (FlxG.keys.justPressed.UP)
+    {
+        setGraphicSize(18, 22);
+		updateHitbox();
+		setGraphicSize(62, 62);
+    }
+	if (FlxG.keys.justPressed.DOWN) 
+	{
+		setGraphicSize(18, 24);
+		updateHitbox();
+		setGraphicSize(60, 60);	
+	}
+	if (FlxG.keys.justPressed.RIGHT) 
+	{
+		setGraphicSize(31, 18);
+		updateHitbox();
+		setGraphicSize(60, 60);
+	}
+	if (FlxG.keys.justPressed.LEFT) 
+	{
+		setGraphicSize(31, 18);
+		updateHitbox();
+		setGraphicSize(60, 60);
+	}
+    
 
         if (_up && _down) {
             _up = _down = false;
@@ -68,6 +98,7 @@ class Baku extends FlxSprite {
         if (_left && _right) {
             _left = _right = false;
         }
+		
 
         if (_up || _down || _left || _right) {
             var angle: Float = 0;
@@ -75,30 +106,18 @@ class Baku extends FlxSprite {
                 angle = -90;
                 facing = FlxObject.UP;
                 prevDIR = 1;
-				setGraphicSize(18, 22);
-				updateHitbox();
-				setGraphicSize(62, 62);
             } else if (_down) {
                 angle = 90;
                 facing = FlxObject.DOWN;
                 prevDIR = 2;
-				setGraphicSize(18, 24);
-				updateHitbox();
-				setGraphicSize(62, 62);
             } else if (_left) {
                 angle = 180;
                 facing = FlxObject.LEFT;
                 prevDIR = 3;
-				setGraphicSize(30, 18);
-				updateHitbox();
-				setGraphicSize(62, 62);
             } else if (_right) {
                 angle = 0;
                 facing = FlxObject.RIGHT;
                 prevDIR = 4;
-				setGraphicSize(30, 18);
-				updateHitbox();
-				setGraphicSize(62, 62);
             }
 
             velocity.set(speed, 0);
