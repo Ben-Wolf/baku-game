@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="27" height="21" tilewidth="32" tileheight="32" infinite="0" nextobjectid="5">
  <tileset firstgid="1" source="tileset.tsx"/>
- <tileset firstgid="37" source="Bed tiles.tsx"/>
+ <tileset firstgid="37" name="Bed tiles" tilewidth="32" tileheight="32" tilecount="36" columns="6">
+  <image source="../images/Bed final.png" width="196" height="196"/>
+ </tileset>
  <objectgroup name="entities" visible="0">
   <object id="1" name="baku" x="35" y="134" width="25" height="23"/>
   <object id="2" name="spirit1" x="421" y="324" width="17" height="17"/>
