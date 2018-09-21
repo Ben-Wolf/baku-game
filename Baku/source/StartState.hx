@@ -17,7 +17,7 @@ class StartState extends FlxState {
 		_backdrop = new FlxSprite(0, 0);
 		_backdrop.loadGraphic("assets/images/titleScreen.png", true, 800, 620);
 		
-		_startButton = new MapButton(315, 538, "assets/images/startoutline.png", "MapState");
+		_startButton = new MapButton(315, 538, "assets/images/startoutline.png", "IntroState");
 		_startButton.addRelativeHitbox(1, 1, 143, 43);
 		
 		add(_backdrop);

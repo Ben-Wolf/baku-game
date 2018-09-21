@@ -15,12 +15,8 @@ class FinishState extends FlxState {
 	override public function new():Void{
 		super();
 		
-		bgColor = 0xFFAA6e99;
+		bgColor = 0xFFd8c7f4;
 		
-		_backdrop = new FlxSprite(0, 0);
-		_backdrop.loadGraphic("assets/images/baku_statue.png", true, 680, 453);
-		_backdrop.animation.add("animate", [0, 1, 2], 6, false);
-		add(_backdrop);
 		var _total:Int;
 		_total = 0;
 		if (Globals.level1State == 2){
@@ -38,7 +34,19 @@ class FinishState extends FlxState {
 		if (Globals.level5State == 2){
 			_total++;
 		}
+		var _Text2 = new flixel.text.FlxText(0, 0, 0, "Baku was full.", 32);
+		_Text2.setFormat(32, 0xFF000000);
+		_Text2.screenCenter();
+		_Text2.y = _Text2.y - 100;
+		add(_Text2);
+		
+		var _Text1 = new flixel.text.FlxText(0, 0, 0, "He moved on to another neighborhood...", 20);
+		_Text1.setFormat(20, 0xFF000000);
+		_Text1.screenCenter();
+		_Text1.y = _Text1.y - 50;
+		add(_Text1);
 		var _endText = new flixel.text.FlxText(0, 0, 0, "You replaced " + _total + " dreams out of 5.", 32);
+		_endText.setFormat(32, 0xFF000000);
 		_endText.screenCenter();
 		add(_endText);
 		
@@ -46,18 +54,18 @@ class FinishState extends FlxState {
 	
 	override public function create():Void {
 		super.create();
-		_continueButton = new MapButton(100, 100, "assets/images/backtomapoutline.png", "StartState");
+		
+		_continueButton = new MapButton(350, 360, "assets/images/backtomapoutline.png", "StartState");
+		var _spr = new FlxSprite(351, 361);
+		_spr.loadGraphic("assets/images/continuebutton.png");
+		add(_spr);
 		_continueButton.addRelativeHitbox(1, 1, 100, 44);
 		
-		var tempsprite = new FlxSprite(101, 101);
-		tempsprite.makeGraphic(100, 44, 0xFFAA1111);
-		add(tempsprite);
 		_continueButton.showHitbox();
 		add(_continueButton);
 	}
 
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
-		_backdrop.animation.play("animate");
 	}
 }
