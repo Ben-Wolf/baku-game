@@ -75,6 +75,7 @@ class ExitButton extends FlxState {
 	
 	public function loadMenu():Void{
 		FlxG.switchState(new StartState());
+		Globals.reset();
 	}
 	
 	public function hover(s:FlxSprite){
