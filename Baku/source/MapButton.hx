@@ -26,15 +26,13 @@ class MapButton extends FlxState {
 
 	public function addRelativeHitbox(x:Int, y:Int, width:Int, height:Int):Void{
 		var levelbutton = new FlxSprite(_leveloutline.x + x, _leveloutline.y + y);
-		levelbutton.makeGraphic(width, height, 0xFFaa1111);
-		levelbutton.alpha = 0;
+		levelbutton.makeGraphic(width, height, 0x01aa1111);
 		_levelbutton.add(levelbutton);
 		FlxMouseEventManager.add(levelbutton, clicked, null , hover, out);
 	}
 
 	public function showHitbox():Void{
 		for (b in _levelbutton){
-			b.alpha = .3;
 		}
 	}
 
