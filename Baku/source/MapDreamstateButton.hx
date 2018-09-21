@@ -22,6 +22,7 @@ class MapDreamstateButton extends FlxState {
 	public function new(x:Int, y:Int, level:Int, state:Int){
 		super();
 		_state = state;
+		_level = level;
 		
 		_showtimer = 0;
 		

@@ -66,9 +66,9 @@ class LevelState extends FlxState {
 		FlxG.collide(_spirit1, _mOuter);
 		FlxG.collide(_spirit2, _mOuter);
 		FlxG.collide(_spirit3, _mOuter);
-		// FlxG.collide(_baku, _mSafety);
+		FlxG.collide(_baku, _mSafety);
 		FlxG.collide(_baku, _mOuter);
-		// FlxG.collide(_baku, _mWalls);
+		FlxG.collide(_baku, _mWalls);
 	}
 
 	private function initialize(Map: String): Void {
@@ -85,7 +85,6 @@ class LevelState extends FlxState {
 								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
 		_mSafety.setTileProperties(2, FlxObject.NONE);
 		_mSafety.setTileProperties(26, FlxObject.ANY);
-		add(_mSafety);
 
 		// Create outer barriers
 		_mOuter.loadMapFromArray(cast(_map.getLayer("outer"), TiledTileLayer).tileArray,
@@ -95,20 +94,21 @@ class LevelState extends FlxState {
 		_mOuter.setTileProperties(23, FlxObject.ANY);
 		_mOuter.setTileProperties(24, FlxObject.ANY);
 		_mOuter.setTileProperties(1, FlxObject.ANY);
-		add(_mOuter);
 
 		// Create floor
 		_mFloor.loadMapFromArray(cast(_map.getLayer("floor"), TiledTileLayer).tileArray,
 								_map.width, _map.height, "assets/images/walls.png",
 								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
 		// _mFloor.follow();
-		add(_mFloor);
 
 		// Create walls
 		_mWalls.loadMapFromArray(cast(_map.getLayer("walls"), TiledTileLayer).tileArray,
 								_map.width, _map.height, "assets/images/walls.png",
 								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
 		// _mWalls.follow();
+		add(_mFloor);
+		add(_mOuter);
+		add(_mSafety);
 		add(_mWalls);
 
 		// Initialize timer

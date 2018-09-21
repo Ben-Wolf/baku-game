@@ -18,6 +18,9 @@ class Globals{
 	public static function reset():Void{
 		level1State = 0;
 		level2State = 0;
+		level3State = 0;
+		level4State = 0;
+		level5State = 0;
 		goodDreams = 0;
 		badDreams = 0;
 	}
