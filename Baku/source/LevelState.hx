@@ -131,6 +131,7 @@ class LevelState extends FlxState {
 		_soundSuckUp = FlxG.sound.load(AssetPaths.suck_0__wav);
 		_soundSuckLoop = FlxG.sound.load(AssetPaths.suck_1__wav);
 		_soundSuckDown = FlxG.sound.load(AssetPaths.suck_2__wav);
+		FlxG.sound.playMusic(AssetPaths.BakuThemeWarped__ogg);
 	}
 
 	private function placeEntities(name: String, data: Xml): Void {
