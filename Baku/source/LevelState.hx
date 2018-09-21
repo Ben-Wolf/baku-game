@@ -33,6 +33,8 @@ class LevelState extends FlxState {
 		}
 		if (FlxG.keys.anyPressed([FlxKey.SPACE])) {
 			_baku.sucking = true;
+			_baku.suckboi();
+
 			if (_suck == null) {
 				suck();
 			}

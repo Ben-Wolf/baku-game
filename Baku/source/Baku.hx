@@ -21,6 +21,12 @@ class Baku extends FlxSprite {
         animation.add("lr", [25, 26, 27, 28], 24, false);
         animation.add("u", [30, 31, 32, 33], 29, false);
         animation.add("d", [11, 12, 13, 14], 10, false);
+		animation.add("lrs", [15, 16, 17, 18, 19, 20, 21, 22, 23], 24, false);
+		animation.add("us", [1, 2, 3, 4, 5, 6, 7, 8], 29, false);
+		animation.add("ds", [35, 36, 37, 38, 39, 40, 41, 42, 43], 10, false); 
+		
+	
+		
 
     }
 
@@ -32,6 +38,20 @@ class Baku extends FlxSprite {
         }
         super.update(elapsed);
     }
+	
+	public function suckboi(): Void{
+		
+		switch (facing) 
+		{
+			case FlxObject.LEFT, FlxObject.RIGHT:
+				animation.play("lrs");
+			case  FlxObject.UP:
+				animation.play("ds");
+			case FlxObject.DOWN:
+				animation.play("us");
+				
+		}
+	}
 
     function move(): Void {
         var _up: Bool = false;
