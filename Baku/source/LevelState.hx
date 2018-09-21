@@ -107,9 +107,9 @@ class LevelState extends FlxState {
 								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
 		// _mWalls.follow();
 		add(_mFloor);
-		add(_mOuter);
 		add(_mSafety);
 		add(_mWalls);
+		add(_mOuter);
 
 		// Initialize timer
 		_time = new FlxTimer().start(45.0, dummyCallback, 1);
