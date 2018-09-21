@@ -12,6 +12,7 @@ import flixel.input.keyboard.FlxKey;
 import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
+import flixel.system.FlxSound;
 
 // This state holds all the universal level functionality
 class LevelState extends FlxState {
