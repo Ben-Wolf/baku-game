@@ -12,14 +12,17 @@ import flixel.input.keyboard.FlxKey;
 import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
+import flixel.system.FlxSound;
 
 // This state holds all the universal level functionality
 class LevelState extends FlxState {
 	var _baku: Baku;
 	var _suck: Suck = null;
+	var _soundSuck: FlxSound;
 	var _spirit: Spirit;
 	var _map: TiledMap;
 	var _mWalls: FlxTilemap;
+	var _mSafety: FlxTilemap;
 	var _mOuter: FlxTilemap;
 	var _mFloor: FlxTilemap;
 	var _time: FlxTimer;
@@ -39,6 +42,7 @@ class LevelState extends FlxState {
 				suck();
 			}
 			FlxG.overlap(_suck, _spirit, suckSpirit);
+			_soundSuck.play();
 		} else {
 			if (_suck != null) {
 				_suck.kill();
@@ -46,6 +50,7 @@ class LevelState extends FlxState {
 			}
 			_baku.sucking = false;
 		}
+		FlxG.collide(_baku, _mSafety);
 		FlxG.collide(_baku, _mOuter);
 		FlxG.collide(_spirit, _mOuter);
 		FlxG.collide(_baku, _mWalls);
@@ -55,6 +60,7 @@ class LevelState extends FlxState {
 		// Setting up the map
 		_map = new TiledMap("assets/data/" + Map + ".tmx");
 		_mWalls = new FlxTilemap();
+		_mSafety = new FlxTilemap();
 		_mOuter = new FlxTilemap();
 		_mFloor = new FlxTilemap();
 
@@ -66,6 +72,14 @@ class LevelState extends FlxState {
 		_mFloor.setTileProperties(2, FlxObject.NONE);
 		_mFloor.setTileProperties(3, FlxObject.ANY);
 		add(_mFloor);
+
+		// Implement safety barrier layer
+		_mSafety.loadMapFromArray(cast(_map.getLayer("safety"), TiledTileLayer).tileArray,
+								_map.width, _map.height, "assets/images/walls.png",
+								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
+		_mSafety.setTileProperties(2, FlxObject.NONE);
+		_mSafety.setTileProperties(3, FlxObject.ANY);
+		add(_mWalls);
 
 		// Create walls
 		_mWalls.loadMapFromArray(cast(_map.getLayer("walls"), TiledTileLayer).tileArray,
@@ -104,6 +118,7 @@ class LevelState extends FlxState {
 		add(_baku);
 		add(_spirit);
 		FlxG.camera.follow(_baku, TOPDOWN, 1);
+		_soundSuck = FlxG.sound.load(AssetPaths.suck_0__wav);
 	}
 
 	private function placeEntities(name: String, data: Xml): Void {
@@ -160,8 +175,8 @@ class LevelState extends FlxState {
 		Sp.kill();
 		win();
 	}
-	
+
 	private function win():Void{
-		
+
 	}
 }
