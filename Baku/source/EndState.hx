@@ -8,11 +8,8 @@ import Globals.*;
 
 class EndState extends FlxState {
 	var _winTimer:Float;
-	var _winImage:FlxSprite;
-	var _continueButton:FlxSprite;
+	var _continueButton:MapButton;
 	
-	
-	var _mapButton:MapButton;
 	var _backdrop:FlxSprite;
 	
 	override public function new(won:Bool):Void{
@@ -38,14 +35,14 @@ class EndState extends FlxState {
 	
 	override public function create():Void {
 		super.create();
-		_mapButton = new MapButton(100, 100, "assets/images/backtomapoutline.png", "MapState");
-		_mapButton.addRelativeHitbox(1, 1, 100, 44);
+		_continueButton = new MapButton(100, 100, "assets/images/backtomapoutline.png", "MapState");
+		_continueButton.addRelativeHitbox(1, 1, 100, 44);
 		
 		var tempsprite = new FlxSprite(101, 101);
 		tempsprite.makeGraphic(100, 44, 0xFFAA1111);
 		add(tempsprite);
-		_mapButton.showHitbox();
-		add(_mapButton);
+		_continueButton.showHitbox();
+		add(_continueButton);
 	}
 
 	override public function update(elapsed:Float):Void {
