@@ -4,7 +4,7 @@
  <tileset firstgid="37" name="Bed tiles" tilewidth="32" tileheight="32" tilecount="36" columns="6">
   <image source="../images/Bed final.png" width="196" height="196"/>
  </tileset>
- <tileset firstgid="73" source="../../../../../Documents/Game Dev/Project 1/bed test.tsx"/>
+ <tileset firstgid="73" source="bed test.tsx"/>
  <layer name="floor" width="31" height="26" opacity="0.36">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
