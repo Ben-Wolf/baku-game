@@ -82,7 +82,7 @@ class FinishButton extends FlxState {
 	}
 	
 	public function loadMenu():Void{
-		FlxG.switchState(new StartState());
+		FlxG.switchState(new FinishState());
 		Globals.reset();
 	}
 	
