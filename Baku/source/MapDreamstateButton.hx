@@ -103,7 +103,7 @@ class MapDreamstateButton extends FlxState {
 	public function showPrompt(s:FlxSprite){
 		if (_state != 1)
 			return;
-		_showtimer = 20;
+		_showtimer = 50;
 	}
 	
 	public function hover(s:FlxSprite){
