@@ -25,9 +25,6 @@ class Baku extends FlxSprite {
 		animation.add("us", [1, 2, 3, 4, 5, 6, 7, 8], 29, false);
 		animation.add("ds", [35, 36, 37, 38, 39, 40, 41, 42, 43], 10, false); 
 		
-	
-		
-
     }
 
     override public function update(elapsed: Float): Void {
@@ -78,18 +75,30 @@ class Baku extends FlxSprite {
                 angle = -90;
                 facing = FlxObject.UP;
                 prevDIR = 1;
+				setGraphicSize(18, 22);
+				updateHitbox();
+				setGraphicSize(62, 62);
             } else if (_down) {
                 angle = 90;
                 facing = FlxObject.DOWN;
                 prevDIR = 2;
+				setGraphicSize(18, 24);
+				updateHitbox();
+				setGraphicSize(62, 62);
             } else if (_left) {
                 angle = 180;
                 facing = FlxObject.LEFT;
                 prevDIR = 3;
+				setGraphicSize(30, 18);
+				updateHitbox();
+				setGraphicSize(62, 62);
             } else if (_right) {
                 angle = 0;
                 facing = FlxObject.RIGHT;
                 prevDIR = 4;
+				setGraphicSize(30, 18);
+				updateHitbox();
+				setGraphicSize(62, 62);
             }
 
             velocity.set(speed, 0);
