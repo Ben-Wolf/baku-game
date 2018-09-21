@@ -44,7 +44,7 @@ class FountainState extends FlxState {
 		
 		add(_exchangeButton);
 		
-		_exitbutton = new ExitButton(0.5);
+		_exitbutton = new ExitButton(0.7);
 		add(_exitbutton);
 	}
 

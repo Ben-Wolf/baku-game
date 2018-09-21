@@ -6,36 +6,47 @@ import flixel.FlxSprite;
 import flixel.input.mouse.FlxMouseEventManager;
 import Globals.*;
 
-class EndState extends FlxState {
+class FinishState extends FlxState {
 	var _winTimer:Float;
 	var _continueButton:MapButton;
 	
 	var _backdrop:FlxSprite;
 	
-	override public function new(won:Bool):Void{
+	override public function new():Void{
 		super();
 		
 		bgColor = 0xFFAA6e99;
 		
 		_backdrop = new FlxSprite(0, 0);
-		if (won){
-			_backdrop.loadGraphic("assets/images/baku_statue.png", true, 680, 453);
-		}else{
-			_backdrop.loadGraphic("assets/images/baku_statue.png", true, 800, 620);
-		}
+		_backdrop.loadGraphic("assets/images/baku_statue.png", true, 680, 453);
 		_backdrop.animation.add("animate", [0, 1, 2], 6, false);
 		add(_backdrop);
-		
-		//var _shards = new ShardsUI();
-		//add(_shards);
-		
-		
+		var _total:Int;
+		_total = 0;
+		if (Globals.level1State == 2){
+			_total++;
+		}
+		if (Globals.level2State == 2){
+			_total++;
+		}
+		if (Globals.level3State == 2){
+			_total++;
+		}
+		if (Globals.level4State == 2){
+			_total++;
+		}
+		if (Globals.level5State == 2){
+			_total++;
+		}
+		var _endText = new flixel.text.FlxText(0, 0, 0, "You replaced " + _total + " dreams out of 5.", 32);
+		_endText.screenCenter();
+		add(_endText);
 		
 	}
 	
 	override public function create():Void {
 		super.create();
-		_continueButton = new MapButton(100, 100, "assets/images/backtomapoutline.png", "MapState");
+		_continueButton = new MapButton(100, 100, "assets/images/backtomapoutline.png", "StartState");
 		_continueButton.addRelativeHitbox(1, 1, 100, 44);
 		
 		var tempsprite = new FlxSprite(101, 101);

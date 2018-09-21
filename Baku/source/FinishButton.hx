@@ -8,7 +8,7 @@ import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import flixel.input.mouse.FlxMouseEventManager;
 
-class ExitButton extends FlxState {
+class FinishButton extends FlxState {
 	var _button:FlxSprite;
 	var _alpha:Float;
 	var _group:FlxGroup;
@@ -16,8 +16,11 @@ class ExitButton extends FlxState {
 	
 	public function new(alpha:Float){
 		super();
-		_button = new FlxSprite(10, 40);
-		_button.loadGraphic("assets/images/exitbutton.png");
+		
+		var image_width = 106;
+		var image_height = 42;
+		_button = new FlxSprite(FlxG.width - image_width - 10, FlxG.height/2 - image_height/2);
+		_button.loadGraphic("assets/images/finishbutton.png");
 		_button.alpha = alpha;
 		_alpha = alpha;
 		add(_button);
@@ -25,14 +28,14 @@ class ExitButton extends FlxState {
 		_showing = false;
 		
 		_group = new FlxGroup(3);
-		var _background = new FlxSprite(10, 100);
-		_background.loadGraphic("assets/images/exitprompt.png");
+		var _background = new FlxSprite(FlxG.width - image_width - 110, FlxG.height/2 - image_height/2 + 60);
+		_background.loadGraphic("assets/images/finishprompt.png");
 		_group.add(_background);
 		
-		var _yesButton = new FlxButton(20, 130, "Yes", loadMenu);
+		var _yesButton = new FlxButton(FlxG.width - image_width - 101, FlxG.height/2 - image_height/2 + 90, "Yes", loadMenu);
 		_group.add(_yesButton);
 		
-		var _noButton = new FlxButton(120, 130, "No", hidePrompt);
+		var _noButton = new FlxButton(FlxG.width - image_width, FlxG.height/2 - image_height/2 + 90, "No", hidePrompt);
 		_group.add(_noButton);
 		
 		for (b in _group){
@@ -60,8 +63,8 @@ class ExitButton extends FlxState {
 			for (b in _group){
 				b.exists = false;
 			}
-			_button.alpha = _alpha;
 			_showing = false;
+			_button.alpha = _alpha;
 		}else{
 			for (b in _group){
 				b.exists = true;
@@ -79,7 +82,7 @@ class ExitButton extends FlxState {
 	}
 	
 	public function loadMenu():Void{
-		FlxG.switchState(new StartState());
+		FlxG.switchState(new FinishState());
 		Globals.reset();
 	}
 	
