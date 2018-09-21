@@ -20,6 +20,7 @@ class LevelState extends FlxState {
 	var _spirit: Spirit;
 	var _map: TiledMap;
 	var _mWalls: FlxTilemap;
+	var _mSafety: FlxTilemap;
 	var _mOuter: FlxTilemap;
 	var _mFloor: FlxTilemap;
 	var _time: FlxTimer;
@@ -44,6 +45,7 @@ class LevelState extends FlxState {
 			}
 			_baku.sucking = false;
 		}
+		FlxG.collide(_baku, _mSafety);
 		FlxG.collide(_baku, _mOuter);
 		FlxG.collide(_spirit, _mOuter);
 		FlxG.collide(_baku, _mWalls);
@@ -53,6 +55,7 @@ class LevelState extends FlxState {
 		// Setting up the map
 		_map = new TiledMap("assets/data/" + Map + ".tmx");
 		_mWalls = new FlxTilemap();
+		_mSafety = new FlxTilemap();
 		_mOuter = new FlxTilemap();
 		_mFloor = new FlxTilemap();
 
@@ -64,6 +67,14 @@ class LevelState extends FlxState {
 		_mFloor.setTileProperties(2, FlxObject.NONE);
 		_mFloor.setTileProperties(3, FlxObject.ANY);
 		add(_mFloor);
+
+		// Implement safety barrier layer
+		_mSafety.loadMapFromArray(cast(_map.getLayer("safety"), TiledTileLayer).tileArray,
+								_map.width, _map.height, "assets/images/walls.png",
+								_map.tileWidth, _map.tileHeight, FlxTilemapAutoTiling.OFF, 1, 1, 3);
+		_mSafety.setTileProperties(2, FlxObject.NONE);
+		_mSafety.setTileProperties(3, FlxObject.ANY);
+		add(_mWalls);
 
 		// Create walls
 		_mWalls.loadMapFromArray(cast(_map.getLayer("walls"), TiledTileLayer).tileArray,
@@ -115,20 +126,20 @@ class LevelState extends FlxState {
 	private function suck(): Void {
 		var addY: Float = 0;
 		var addX: Float = 0;
-		var l: Int = 16;
-		var w: Int = 16;
+		var l: Int = 36;
+		var w: Int = 36;
 
 		if (_baku.facing == FlxObject.UP) {
 			addY = -32;
 			w += 16;
 		} else if (_baku.facing == FlxObject.DOWN) {
-			addY = 16;
+			addY = 32;
 			w += 16;
 		} else if (_baku.facing == FlxObject.LEFT) {
 			addX = -32;
 			l += 16;
 		} else if (_baku.facing == FlxObject.RIGHT) {
-			addX = 16;
+			addX = 32;
 			l += 16;
 		}
 
@@ -154,8 +165,8 @@ class LevelState extends FlxState {
 		Sp.kill();
 		win();
 	}
-	
+
 	private function win():Void{
-		
+
 	}
 }

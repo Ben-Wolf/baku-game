@@ -11,8 +11,8 @@ class Level5State extends LevelState {
 	override public function update(elapsed:Float): Void {
 		super.update(elapsed);
 	}
-	
-	override public function win():Void{
+
+	override public function win(): Void{
 		Globals.level5State = 1;
 		FlxG.switchState(new WinState());
 	}
