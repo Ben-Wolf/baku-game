@@ -1,7 +1,7 @@
 package;
 
 import flixel.FlxSprite;
-import flixel.util.FlxColor;
+import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.FlxG;
 import flixel.math.FlxRandom;
 import flixel.math.FlxPoint;
@@ -14,7 +14,9 @@ class Spirit extends FlxSprite {
 
     public function new() {
         super();
-        makeGraphic(16, 16, FlxColor.RED);
+		loadGraphic("assets/images/spirit2.png", true, 32, 32);
+        animation.add("wiggle", [0, 1], true, true);
+        animation.play("wiggle");
         _idleTimer = 0;
         playerPos = FlxPoint.get();
     }

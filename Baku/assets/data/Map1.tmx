@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="29" height="23" tilewidth="32" tileheight="32" infinite="0" nextobjectid="5">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="29" height="23" tilewidth="32" tileheight="32" infinite="0" nextobjectid="7">
  <tileset firstgid="1" source="tileset.tsx"/>
  <objectgroup name="entities">
   <object id="1" name="baku" x="485.437" y="388.35" width="27.0942" height="24.8363"/>
-  <object id="2" name="spirit" x="221.269" y="517.047" width="33.8677" height="24.8363"/>
+  <object id="2" name="spirit1" x="221.269" y="517.047" width="33.8677" height="24.8363"/>
+  <object id="5" name="spirit2" x="587.752" y="520.44" width="14.7759" height="14.7759"/>
+  <object id="6" name="spirit3" x="357.905" y="650.14" width="22.9847" height="14.7759"/>
  </objectgroup>
  <layer name="floor" width="29" height="23" opacity="0.7">
   <data encoding="csv">
