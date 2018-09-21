@@ -21,6 +21,9 @@ class LevelState extends FlxState {
 	var _spirit1: Spirit;
 	var _spirit2: Spirit;
 	var _spirit3: Spirit;
+	var sp1: Bool = true;
+	var sp2: Bool = true;
+	var sp3: Bool = true;
 	var _soundSuckUp: FlxSound;
 	var _soundSuckLoop: FlxSound;
 	var _soundSuckDown: FlxSound;
@@ -190,8 +193,16 @@ class LevelState extends FlxState {
 
 	private function suckSpirit(S: Suck, Sp: Spirit): Void {
 		Sp.kill();
-		Sp == null;
-		if (_spirit1 == null && _spirit2 == null && _spirit3 == null) {
+		if (_spirit1 == Sp) {
+			sp1 = false;
+		}
+		if (Sp == _spirit2) {
+			sp2 = false;
+		}
+		if (Sp == _spirit3) {
+			sp3 = false;
+		}
+		if (!(sp1 || sp2 || sp3)) {
 			win();
 		}
 	}
