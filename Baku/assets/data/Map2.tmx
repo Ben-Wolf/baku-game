@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="27" height="21" tilewidth="32" tileheight="32" infinite="0" nextobjectid="6">
  <tileset firstgid="1" source="tileset.tsx"/>
- <tileset firstgid="37" source="../../../../../Documents/Game Dev/Project 1/bed test.tsx"/>
- <tileset firstgid="73" source="Bed tiles.tsx"/>
+ <tileset firstgid="37" source="bed test.tsx"/>
+ <tileset firstgid="73" name="Bed tiles" tilewidth="32" tileheight="32" tilecount="36" columns="6">
+  <image source="../images/Bed final.png" width="196" height="196"/>
+ </tileset>
  <layer name="floor" width="27" height="21" opacity="0.62">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
