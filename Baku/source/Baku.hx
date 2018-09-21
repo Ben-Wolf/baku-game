@@ -25,9 +25,6 @@ class Baku extends FlxSprite {
 		animation.add("us", [1, 2, 3, 4, 5, 6, 7, 8], 29, false);
 		animation.add("ds", [35, 36, 37, 38, 39, 40, 41, 42, 43], 10, false); 
 		
-	
-		
-
     }
 
     override public function update(elapsed: Float): Void {
@@ -63,6 +60,36 @@ class Baku extends FlxSprite {
         _down = FlxG.keys.anyPressed([DOWN, S]);
         _left = FlxG.keys.anyPressed([LEFT, A]);
         _right = FlxG.keys.anyPressed([RIGHT, D]);
+		
+		if (FlxG.keys.pressed.UP){
+			
+		}
+
+    if (FlxG.keys.justPressed.UP)
+    {
+        setGraphicSize(18, 22);
+		updateHitbox();
+		setGraphicSize(62, 62);
+    }
+	if (FlxG.keys.justPressed.DOWN) 
+	{
+		setGraphicSize(18, 24);
+		updateHitbox();
+		setGraphicSize(60, 60);	
+	}
+	if (FlxG.keys.justPressed.RIGHT) 
+	{
+		setGraphicSize(31, 18);
+		updateHitbox();
+		setGraphicSize(60, 60);
+	}
+	if (FlxG.keys.justPressed.LEFT) 
+	{
+		setGraphicSize(31, 18);
+		updateHitbox();
+		setGraphicSize(60, 60);
+	}
+    
 
         if (_up && _down) {
             _up = _down = false;
@@ -71,6 +98,7 @@ class Baku extends FlxSprite {
         if (_left && _right) {
             _left = _right = false;
         }
+		
 
         if (_up || _down || _left || _right) {
             var angle: Float = 0;
