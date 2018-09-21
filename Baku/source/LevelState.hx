@@ -39,7 +39,7 @@ class LevelState extends FlxState {
 		super.update(elapsed);
 		displayTime(_time.timeLeft);
 		if (_time.finished) {
-			// FlxG.switchState(LoseState());
+			lose();
 		}
 		if (FlxG.keys.anyPressed([FlxKey.SPACE])) {
 			_baku.sucking = true;
@@ -165,19 +165,28 @@ class LevelState extends FlxState {
 		if (_baku.facing == FlxObject.UP) {
 			addY = -32;
 			w += 16;
+			_suck = new Suck(_baku.x + addX, _baku.y + addY, l, w);
+			add(_suck);
+			_suck.up();
 		} else if (_baku.facing == FlxObject.DOWN) {
 			addY = 32;
 			w += 16;
+			_suck = new Suck(_baku.x + addX, _baku.y + addY, l, w);
+			add(_suck);
+			_suck.down();
 		} else if (_baku.facing == FlxObject.LEFT) {
 			addX = -32;
 			l += 16;
+			_suck = new Suck(_baku.x + addX, _baku.y + addY, l, w);
+			add(_suck);
+			_suck.left();
 		} else if (_baku.facing == FlxObject.RIGHT) {
 			addX = 32;
 			l += 16;
+			_suck = new Suck(_baku.x + addX, _baku.y + addY, l, w);
+			add(_suck);
+			_suck.right();
 		}
-
-		_suck = new Suck(_baku.x + addX, _baku.y + addY, l, w);
-		add(_suck);
 	}
 
 	private function displayTime(T: Float): Void {
