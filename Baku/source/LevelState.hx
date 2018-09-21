@@ -12,11 +12,13 @@ import flixel.input.keyboard.FlxKey;
 import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
+import flixel.system.FlxSound;
 
 // This state holds all the universal level functionality
 class LevelState extends FlxState {
 	var _baku: Baku;
 	var _suck: Suck = null;
+	var _soundSuck: FlxSound;
 	var _spirit: Spirit;
 	var _map: TiledMap;
 	var _mWalls: FlxTilemap;
@@ -38,6 +40,7 @@ class LevelState extends FlxState {
 				suck();
 			}
 			FlxG.overlap(_suck, _spirit, suckSpirit);
+			_soundSuck.play();
 		} else {
 			if (_suck != null) {
 				_suck.kill();
@@ -109,6 +112,7 @@ class LevelState extends FlxState {
 		add(_baku);
 		add(_spirit);
 		FlxG.camera.follow(_baku, TOPDOWN, 1);
+		_soundSuck = FlxG.sound.load(AssetPaths.suck_0__wav);
 	}
 
 	private function placeEntities(name: String, data: Xml): Void {
