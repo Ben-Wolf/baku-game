@@ -4,7 +4,7 @@
  <tileset firstgid="37" name="Bed tiles" tilewidth="32" tileheight="32" tilecount="36" columns="6">
   <image source="../images/Bed final.png" width="196" height="196"/>
  </tileset>
- <tileset firstgid="73" source="../../../../../Documents/Game Dev/Project 1/bed test.tsx"/>
+ <tileset firstgid="73" source="bed test.tsx"/>
  <objectgroup name="entities">
   <object id="1" name="baku" x="485.437" y="388.35" width="27.0942" height="24.8363"/>
   <object id="2" name="spirit1" x="221.269" y="517.047" width="33.8677" height="24.8363"/>
