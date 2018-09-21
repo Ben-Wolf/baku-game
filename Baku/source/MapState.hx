@@ -45,7 +45,7 @@ class MapState extends FlxState {
 			_level1button.showHitbox();
 			add(_level1button);
 		}
-		_level1Dbutton = new MapDreamstateButton(348, 73, 1, Globals.level1State);
+		_level1Dbutton = new MapDreamstateButton(348, 63, 1, Globals.level1State);
 		add(_level1Dbutton);
 
 		if (Globals.level2State == 0){
@@ -74,7 +74,7 @@ class MapState extends FlxState {
 			_level4button.showHitbox();
 			add(_level4button);
 		}
-		_level4Dbutton = new MapDreamstateButton(352, 452, 4, Globals.level4State);
+		_level4Dbutton = new MapDreamstateButton(352, 432, 4, Globals.level4State);
 		add(_level4Dbutton);
 
 		if (Globals.level5State == 0){
@@ -83,7 +83,7 @@ class MapState extends FlxState {
 			_level5button.showHitbox();
 			add(_level5button);
 		}
-		_level5Dbutton = new MapDreamstateButton(561, 424, 5, Globals.level5State);
+		_level5Dbutton = new MapDreamstateButton(551, 424, 5, Globals.level5State);
 		add(_level5Dbutton);
 
 
