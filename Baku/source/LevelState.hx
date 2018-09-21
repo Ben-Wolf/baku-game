@@ -179,4 +179,7 @@ class LevelState extends FlxState {
 	private function win():Void{
 
 	}
+	private function lose():Void{
+
+	}
 }
