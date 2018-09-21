@@ -16,7 +16,7 @@ class ExitButton extends FlxState {
 	
 	public function new(alpha:Float){
 		super();
-		_button = new FlxSprite(10, 10);
+		_button = new FlxSprite(10, 40);
 		_button.loadGraphic("assets/images/exitbutton.png");
 		_button.alpha = alpha;
 		_alpha = alpha;
@@ -25,14 +25,14 @@ class ExitButton extends FlxState {
 		_showing = false;
 		
 		_group = new FlxGroup(3);
-		var _background = new FlxSprite(10, 70);
+		var _background = new FlxSprite(10, 100);
 		_background.loadGraphic("assets/images/exitprompt.png");
 		_group.add(_background);
 		
-		var _yesButton = new FlxButton(20, 100, "Yes", loadMenu);
+		var _yesButton = new FlxButton(20, 130, "Yes", loadMenu);
 		_group.add(_yesButton);
 		
-		var _noButton = new FlxButton(120, 100, "No", hidePrompt);
+		var _noButton = new FlxButton(120, 130, "No", hidePrompt);
 		_group.add(_noButton);
 		
 		for (b in _group){
