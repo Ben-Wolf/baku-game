@@ -18,7 +18,9 @@ import flixel.system.FlxSound;
 class LevelState extends FlxState {
 	var _baku: Baku;
 	var _suck: Suck = null;
-	var _soundSuck: FlxSound;
+	var _soundSuckUp: FlxSound;
+	var _soundSuckLoop: FlxSound;
+	var _soundSuckDown: FlxSound;
 	var _spirit: Spirit;
 	var _map: TiledMap;
 	var _mWalls: FlxTilemap;
@@ -38,13 +40,18 @@ class LevelState extends FlxState {
 			_baku.sucking = true;
 			if (_suck == null) {
 				suck();
+				_soundSuckUp.play();
+			} else {
+			_soundSuckLoop.play();
 			}
 			FlxG.overlap(_suck, _spirit, suckSpirit);
-			_soundSuck.play();
+
+			
 		} else {
 			if (_suck != null) {
 				_suck.kill();
 				_suck = null;
+				_soundSuckDown.play();
 			}
 			_baku.sucking = false;
 		}
@@ -112,7 +119,9 @@ class LevelState extends FlxState {
 		add(_baku);
 		add(_spirit);
 		FlxG.camera.follow(_baku, TOPDOWN, 1);
-		_soundSuck = FlxG.sound.load(AssetPaths.suck_0__wav);
+		_soundSuckUp = FlxG.sound.load(AssetPaths.suck_0__wav);
+		_soundSuckLoop = FlxG.sound.load(AssetPaths.suck_1__wav);
+		_soundSuckDown = FlxG.sound.load(AssetPaths.suck_2__wav);
 	}
 
 	private function placeEntities(name: String, data: Xml): Void {
